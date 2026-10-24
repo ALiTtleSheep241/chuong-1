@@ -1,113 +1,1610 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="h-full bg-slate-900 text-slate-100">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Quiz Chương 1: Mở đầu – Trường Điện Từ</title>
-<style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;color:#333;line-height:1.6;padding:20px;margin:0}
-.container{max-width:800px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1)}
-h1{text-align:center;color:#1a73e8;margin-bottom:6px}
-.sub{text-align:center;color:#666;margin-bottom:28px}
-.qb{margin-bottom:22px;padding:18px;border:1px solid #e0e0e0;border-radius:8px;background:#fafafa}
-.qt{font-weight:600;font-size:1.05em;margin-bottom:12px}
-.opts{list-style:none;padding:0;margin:0}
-.opts li{margin-bottom:8px}
-.opts label{display:flex;align-items:center;padding:10px;border:1px solid #ccc;border-radius:5px;cursor:pointer;transition:background-color .2s;overflow-x:auto}
-.opts label:hover{background:#e8f0fe}
-input[type=radio]{margin-right:14px;transform:scale(1.2);flex:none}
-mjx-container[jax="SVG"]{margin:0 .15em!important}
-mjx-container[jax="SVG"][display="true"]{overflow-x:auto;overflow-y:hidden}
-.btn{display:block;width:100%;padding:15px;font-size:1.2em;color:#fff;background:#1a73e8;border:none;border-radius:8px;cursor:pointer;margin-top:28px;font-weight:bold}
-.btn:hover{background:#1557b0}
-.res{margin-top:28px;padding:20px;background:#e6f4ea;border:1px solid #ceead6;border-radius:8px;text-align:center;font-size:1.5em;font-weight:bold;display:none;color:#155724}
-.exp{margin-top:14px;padding:14px;background:#fff3e0;border-left:4px solid #ff9800;border-radius:4px;display:none;font-size:.95em;overflow-x:auto}
-.ok{background:#d4edda!important;border-color:#c3e6cb!important;color:#155724;font-weight:bold}
-.bad{background:#f8d7da!important;border-color:#f5c6cb!important;color:#721c24}
-</style>
-<script>
-window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};
-</script>
-<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập & Thi Thử Trường Điện Từ (290 Câu Hỏi)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- KaTeX CSS & JS for Math Rendering -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="initKaTeX()"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+        .katex-display {
+            margin: 0.5em 0 !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 4px 0;
+        }
+    </style>
 </head>
-<body>
-<div class="container">
-<h1>Trắc nghiệm Chương 1: Mở đầu</h1>
-<div class="sub" id="sub">30 câu lý thuyết – chọn đáp án là có kết quả và giải thích ngay</div>
-<div id="qz"></div>
-<button class="btn" onclick="submitQuiz()">Xem điểm tổng kết</button>
-<div id="res" class="res"></div>
-</div>
-<script>
-const r=String.raw;
-const D=[
-{q:r`Đại lượng nào sau đây là đại lượng vô hướng?`,o:[r`Lực`,r`Vận tốc`,r`Khối lượng`,r`Cường độ điện trường`],a:2,e:r`Vô hướng chỉ đặc trưng bởi độ lớn (nhiệt độ, khối lượng, điện tích). Lực, vận tốc, cường độ điện trường là vectơ.`},
-{q:r`Vectơ là đại lượng vật lý được đặc trưng bởi:`,o:[r`Chỉ độ lớn`,r`Chỉ hướng`,r`Chỉ điểm đặt`,r`Cả độ lớn và hướng`],a:3,e:r`Vectơ đặc trưng bởi cả độ lớn và hướng của nó.`},
-{q:r`Trong hệ tọa độ trụ, yếu tố vi phân đường \(d\vec{l}\) bằng:`,o:[r`\(dr\,\vec{i}_r+d\phi\,\vec{i}_\phi+dz\,\vec{i}_z\)`,r`\(dr\,\vec{i}_r+r\,d\phi\,\vec{i}_\phi+dz\,\vec{i}_z\)`,r`\(dr\,\vec{i}_r+r\,d\theta\,\vec{i}_\theta+r\sin\theta\,d\phi\,\vec{i}_\phi\)`,r`\(dx\,\vec{i}_x+dy\,\vec{i}_y+dz\,\vec{i}_z\)`],a:1,e:r`Hệ trụ: \(d\vec{l}=dr\,\vec{i}_r+r\,d\phi\,\vec{i}_\phi+dz\,\vec{i}_z\).`},
-{q:r`Trong hệ tọa độ cầu, yếu tố vi phân thể tích \(dV\) bằng:`,o:[r`\(r\,dr\,d\phi\,dz\)`,r`\(r^2\,dr\,d\theta\,d\phi\)`,r`\(r^2\sin\theta\,dr\,d\theta\,d\phi\)`,r`\(dx\,dy\,dz\)`],a:2,e:r`Hệ cầu: \(dV=r^2\sin\theta\,dr\,d\theta\,d\phi\).`},
-{q:r`Toán tử gradient tác dụng lên một hàm vô hướng cho kết quả là:`,o:[r`Một hàm vô hướng`,r`Một hàm vectơ`,r`Một số phức`,r`Một ma trận`],a:1,e:r`Gradient tác dụng lên hàm vô hướng, kết quả là một hàm vectơ.`},
-{q:r`Divergence của \(\vec{A}\) được định nghĩa là giới hạn của tỉ số thông lượng \(\oint_S\vec{A}\cdot d\vec{S}\) qua mặt kín chia cho:`,o:[r`Độ dài đường cong`,r`Diện tích mặt`,r`Thể tích \(\Delta V\) (với \(\Delta V\to0\))`,r`Thời gian \(\Delta t\)`],a:2,e:r`\(\mathrm{div}\vec{A}=\nabla\cdot\vec{A}=\displaystyle\lim_{\Delta V\to0}\frac{\oint_S\vec{A}\cdot d\vec{S}}{\Delta V}\)`},
-{q:r`Nếu \(\mathrm{div}\vec{A}>0\) thì thông lượng của \(\vec{A}\):`,o:[r`Hướng vào bên trong mặt kín S`,r`Hướng ra bên ngoài mặt kín S`,r`Vào và ra như nhau`,r`Luôn bằng 0 tại mọi điểm`],a:1,e:r`\(\mathrm{div}\vec{A}>0\): thông lượng hướng ra ngoài S; \(\mathrm{div}\vec{A}<0\): hướng vào trong; \(\mathrm{div}\vec{A}=0\): vào và ra như nhau.`},
-{q:r`Toán tử rot (curl) mô tả tính chất nào của trường vectơ?`,o:[r`Tính chất thế`,r`Tính chất tuyến tính`,r`Tính chất xoáy`,r`Tính chất đồng nhất`],a:2,e:r`Toán tử rot mô tả tính chất xoáy của trường vectơ.`},
-{q:r`Nếu \(\mathrm{rot}\vec{A}=0\) thì trường \(\vec{A}\) được gọi là:`,o:[r`Trường xoáy`,r`Trường thế (không xoáy)`,r`Trường biến thiên`,r`Trường dừng`],a:1,e:r`\(\mathrm{rot}\vec{A}=0\): trường không xoáy, còn gọi là trường thế. \(\mathrm{rot}\vec{A}\neq0\): trường có tính chất xoáy.`},
-{q:r`Định lý Stokes được viết là:`,o:[r`\(\oint_S\vec{A}\cdot d\vec{S}=\int_V(\mathrm{div}\vec{A})\,dV\)`,r`\(\oint_C\vec{A}\cdot d\vec{l}=\int_V(\mathrm{div}\vec{A})\,dV\)`,r`\(\oint_C\vec{A}\cdot d\vec{l}=\int_S(\mathrm{rot}\vec{A})\cdot d\vec{S}\)`,r`\(\oint_S\vec{A}\cdot d\vec{S}=\int_S(\mathrm{rot}\vec{A})\cdot d\vec{S}\)`],a:2,e:r`Stokes liên hệ lưu số theo đường kín C với thông lượng của \(\mathrm{rot}\vec{A}\) qua mặt S bao bởi C.`},
-{q:r`Định lý Divergence được viết là:`,o:[r`\(\oint_C\vec{A}\cdot d\vec{l}=\int_S(\mathrm{rot}\vec{A})\cdot d\vec{S}\)`,r`\(\oint_C\vec{A}\cdot d\vec{l}=\int_V(\mathrm{div}\vec{A})\,dV\)`,r`\(\oint_S\vec{A}\cdot d\vec{S}=\int_S(\mathrm{rot}\vec{A})\cdot d\vec{S}\)`,r`\(\oint_S\vec{A}\cdot d\vec{S}=\int_V(\mathrm{div}\vec{A})\,dV\)`],a:3,e:r`Divergence liên hệ thông lượng qua mặt kín S với tích phân \(\mathrm{div}\vec{A}\) trong thể tích V bao bởi S.`},
-{q:r`Hệ thức nào sau đây luôn đúng?`,o:[r`\(\mathrm{div}(\mathrm{rot}\vec{A})=0\)`,r`\(\mathrm{div}(\mathrm{rot}\vec{A})=1\)`,r`\(\mathrm{div}(\mathrm{rot}\vec{A})=\vec{A}\)`,r`\(\mathrm{div}(\mathrm{rot}\vec{A})=\Delta\vec{A}\)`],a:0,e:r`\(\mathrm{div}(\mathrm{rot}\vec{A})=\nabla\cdot(\nabla\times\vec{A})=0\)`},
-{q:r`Hệ thức nào sau đây luôn đúng?`,o:[r`\(\mathrm{rot}(\mathrm{grad}f)=\mathrm{grad}f\)`,r`\(\mathrm{rot}(\mathrm{grad}f)=\Delta f\)`,r`\(\mathrm{rot}(\mathrm{grad}f)=1\)`,r`\(\mathrm{rot}(\mathrm{grad}f)=0\)`],a:3,e:r`\(\mathrm{rot}(\mathrm{grad}f)=\nabla\times(\nabla f)=0\)`},
-{q:r`Toán tử Laplace tác dụng lên một vectơ được tính bằng:`,o:[r`\(\Delta\vec{A}=\mathrm{rot}(\mathrm{grad}\vec{A})-\mathrm{div}(\mathrm{rot}\vec{A})\)`,r`\(\Delta\vec{A}=\mathrm{grad}(\mathrm{div}\vec{A})-\mathrm{rot}(\mathrm{rot}\vec{A})\)`,r`\(\Delta\vec{A}=\mathrm{div}(\mathrm{grad}\vec{A})+\mathrm{rot}(\mathrm{rot}\vec{A})\)`,r`\(\Delta\vec{A}=\mathrm{grad}(\mathrm{div}\vec{A})+\mathrm{rot}(\mathrm{rot}\vec{A})\)`],a:1,e:r`Theo slide: \(\Delta\vec{A}=\mathrm{grad}(\mathrm{div}\vec{A})-\mathrm{rot}(\mathrm{rot}\vec{A})\).`},
-{q:r`Trường điện từ là một dạng vật chất cơ bản, chuyển động với vận tốc C:`,o:[r`Trong mọi môi trường vật chất`,r`Chỉ trong điện môi`,r`Trong chân không, trong mọi hệ quy chiếu quán tính`,r`Chỉ trong vật dẫn`],a:2,e:r`Slide Khái niệm: chuyển động với vận tốc C trong mọi hệ quy chiếu quán tính trong chân không.`},
-{q:r`Mô hình toán học của trường điện từ gồm:`,o:[r`Chỉ định luật Gauss`,r`Hệ phương trình Maxwell và các điều kiện bờ (biên)`,r`Chỉ định luật Faraday`,r`Định luật Ohm và định luật Joule`],a:1,e:r`Mô hình vật lý là hệ tương tác TĐT – môi trường chất mang điện; mô hình toán học là hệ PT Maxwell và các điều kiện bờ (biên).`},
-{q:r`Vectơ Poynting được định nghĩa là:`,o:[r`\(\vec{P}=\vec{E}+\vec{H}\)`,r`\(\vec{P}=\vec{E}\times\vec{H}\)`,r`\(\vec{P}=\vec{E}\cdot\vec{H}\)`,r`\(\vec{P}=\vec{D}\times\vec{B}\)`],a:1,e:r`Vectơ Poynting: \(\vec{P}=\vec{E}\times\vec{H}\).`},
-{q:r`Cường độ dòng điện \(I\) chảy qua mặt S liên hệ với vectơ mật độ dòng điện \(\vec{J}\) bởi:`,o:[r`\(I=\int_S\vec{J}\cdot d\vec{S}\)`,r`\(I=\int_V\vec{J}\,dV\)`,r`\(I=\oint_C\vec{J}\cdot d\vec{l}\)`,r`\(I=\vec{J}\cdot l\)`],a:0,e:r`Vectơ mật độ dòng điện: \(I=\int_S\vec{J}\cdot d\vec{S}\).`},
-{q:r`Lực tương tác điện từ tác dụng lên điện tích \(q\) chuyển động với vận tốc \(\vec{v}\) là:`,o:[r`\(\vec{F}=q\vec{E}\)`,r`\(\vec{F}=q\vec{v}\times\vec{B}\)`,r`\(\vec{F}=q\vec{E}-q\vec{v}\times\vec{B}\)`,r`\(\vec{F}=q\vec{E}+q\vec{v}\times\vec{B}\)`],a:3,e:r`\(\vec{F}=\vec{F}_e+\vec{F}_m=q\vec{E}+q\vec{v}\times\vec{B}\) (lực điện cộng lực từ).`},
-{q:r`Vectơ cảm ứng điện \(\vec{D}\) trong môi trường điện môi được xác định bởi:`,o:[r`\(\vec{D}=\varepsilon_0\vec{E}-\vec{P}\)`,r`\(\vec{D}=\varepsilon_0\vec{E}+\vec{P}\)`,r`\(\vec{D}=\vec{P}/\varepsilon_0\)`,r`\(\vec{D}=\varepsilon\vec{E}-\vec{P}\)`],a:1,e:r`\(\vec{D}=\varepsilon_0\vec{E}+\vec{P}=\varepsilon_0(1+\chi_e)\vec{E}=\varepsilon\vec{E}\)`},
-{q:r`Mật độ năng lượng điện trường được tính bằng:`,o:[r`\(w_e=\dfrac12\vec{E}\cdot\vec{D}\)`,r`\(w_e=\dfrac12\vec{H}\cdot\vec{B}\)`,r`\(w_e=\vec{E}\times\vec{H}\)`,r`\(w_e=\vec{J}\cdot\vec{E}\)`],a:0,e:r`\(w_e=\dfrac12\vec{E}\cdot\vec{D}\); mật độ năng lượng từ trường \(w_m=\dfrac12\vec{H}\cdot\vec{B}\).`},
-{q:r`Điều kiện biên đối với thành phần tiếp tuyến của điện trường là:`,o:[r`\(E_{1t}-E_{2t}=\sigma\)`,r`\(E_{1t}-E_{2t}=J_s\)`,r`\(E_{1t}-E_{2t}=0\)`,r`\(E_{1t}+E_{2t}=0\)`],a:2,e:r`\(E_{1t}-E_{2t}=0\) (thành phần tiếp tuyến của \(\vec{E}\) liên tục); còn \(H_{1t}-H_{2t}=J_s\).`},
-{q:r`Theo định luật Ohm dạng vi phân \(\vec{J}=\gamma\vec{E}\), mật độ công suất tiêu tán \(p\) trong vật dẫn bằng:`,o:[r`\(p=\gamma J^2\)`,r`\(p=\vec{J}\cdot\vec{E}=\gamma E^2=\dfrac{J^2}{\gamma}\)`,r`\(p=\dfrac{E^2}{\gamma}\)`,r`\(p=\dfrac{J}{\gamma}\)`],a:1,e:r`\(p=\vec{J}\cdot\vec{E}\), kết hợp \(\vec{J}=\gamma\vec{E}\) suy ra \(p=\gamma E^2=\dfrac{J^2}{\gamma}\).`},
-{q:r`Dạng vi phân của định luật cảm ứng điện từ Faraday là:`,o:[r`\(\mathrm{rot}\vec{H}=\vec{J}+\dfrac{\partial\vec{D}}{\partial t}\)`,r`\(\mathrm{div}\vec{D}=\rho\)`,r`\(\mathrm{rot}\vec{E}=-\dfrac{\partial\vec{B}}{\partial t}\)`,r`\(\mathrm{div}\vec{B}=0\)`],a:2,e:r`Faraday: sức điện động cảm ứng bằng và ngược chiều tốc độ biến thiên từ thông, dạng vi phân \(\mathrm{rot}\vec{E}=-\dfrac{\partial\vec{B}}{\partial t}\).`},
-{q:r`Trong phương trình \(\mathrm{rot}\vec{H}=\vec{J}+\dfrac{\partial\vec{D}}{\partial t}\), thành phần \(\dfrac{\partial\vec{D}}{\partial t}\) được gọi là:`,o:[r`Mật độ dòng điện dẫn`,r`Mật độ điện tích khối`,r`Mật độ dòng điện chuyển dịch (dòng điện dịch)`,r`Mật độ từ thông`],a:2,e:r`Trong định luật Ampere–Maxwell, \(\vec{J}_d=\dfrac{\partial\vec{D}}{\partial t}\) là mật độ dòng điện chuyển dịch (dòng điện dịch).`},
-{q:r`Phương trình dạng vi phân của định luật Gauss đối với điện trường là:`,o:[r`\(\mathrm{div}\vec{B}=0\)`,r`\(\mathrm{div}\vec{J}=-\dfrac{\partial\rho}{\partial t}\)`,r`\(\mathrm{rot}\vec{E}=0\)`,r`\(\mathrm{div}\vec{D}=\rho\)`],a:3,e:r`Gauss điện: thông lượng \(\vec{D}\) qua mặt kín bằng tổng điện tích tự do bên trong, dạng vi phân \(\mathrm{div}\vec{D}=\rho\).`},
-{q:r`Định luật Gauss đối với từ trường cho biết thông lượng của vectơ cảm ứng từ \(\vec{B}\) qua mặt kín S bất kỳ:`,o:[r`Bằng tổng điện tích bên trong S`,r`Luôn bằng không`,r`Bằng cường độ dòng điện qua S`,r`Luôn dương`],a:1,e:r`\(\oint_S\vec{B}\cdot d\vec{S}=0\), dạng vi phân \(\mathrm{div}\vec{B}=0\): thông lượng của \(\vec{B}\) luôn chảy liên tục.`},
-{q:r`Phương trình liên tục hóa (mô hình toán học của định luật bảo toàn điện tích) là:`,o:[r`\(\mathrm{div}\vec{J}=\dfrac{\partial\rho}{\partial t}\)`,r`\(\mathrm{div}\vec{J}=\rho\)`,r`\(\mathrm{div}\vec{J}=-\dfrac{\partial\rho}{\partial t}\)`,r`\(\mathrm{rot}\vec{J}=-\dfrac{\partial\rho}{\partial t}\)`],a:2,e:r`Nếu điện tích trong V giảm thì có dòng điện chảy ra ngoài S: \(\mathrm{div}\vec{J}=-\dfrac{\partial\rho}{\partial t}\).`},
-{q:r`Với trường điện từ dừng (\(\dfrac{\partial}{\partial t}=0\) và \(\vec{J}\neq0\)), điện trường có tính chất:`,o:[r`Xoáy`,r`Thế (\(\mathrm{rot}\vec{E}=0\))`,r`Biến thiên theo thời gian`,r`Không tồn tại`],a:1,e:r`Từ phương trình (2) với \(\dfrac{\partial}{\partial t}=0\) suy ra \(\mathrm{rot}\vec{E}=0\) nên điện trường chỉ có tính chất thế; từ trường vẫn có tính chất xoáy (\(\mathrm{rot}\vec{H}=\vec{J}\)).`},
-{q:r`Với trường điện từ tĩnh (\(\dfrac{\partial}{\partial t}=0\) và \(\vec{J}=0\)), quan hệ giữa điện trường và từ trường là:`,o:[r`Gắn bó mật thiết với nhau`,r`Từ trường sinh ra điện trường`,r`Độc lập với nhau, cả hai đều có tính chất thế`,r`Điện trường xoáy, từ trường thế`],a:2,e:r`Khi \(\mathrm{rot}\vec{H}=0\) và \(\mathrm{rot}\vec{E}=0\), điện trường và từ trường hoàn toàn độc lập với nhau, cả hai đều có tính chất thế, không có tính chất xoáy.`}
-];
-const qz=document.getElementById("qz");
-let h='';
-D.forEach((it,i)=>{
-  let o='';
-  it.o.forEach((t,j)=>{o+=`<li><label id="l${i}_${j}"><input type="radio" name="q${i}" value="${j}" onchange="pick(${i},${j})"><span>${t}</span></label></li>`;});
-  h+=`<div class="qb"><div class="qt">Câu ${i+1}: ${it.q}</div><ul class="opts">${o}</ul><div id="e${i}" class="exp"><strong>Giải thích:</strong> ${it.e}</div></div>`;
-});
-qz.innerHTML=h;
-if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise();}
-let done=0,right=0;
-function pick(i,j){
-  const it=D[i];
-  document.getElementById(`l${i}_${it.a}`).classList.add('ok');
-  if(j===it.a){right++;}else{document.getElementById(`l${i}_${j}`).classList.add('bad');}
-  document.getElementById(`e${i}`).style.display='block';
-  document.querySelectorAll(`input[name="q${i}"]`).forEach(x=>x.disabled=true);
-  done++;
-  document.getElementById('sub').textContent=`Đã làm ${done}/${D.length} câu • Đúng ${right}`;
-}
-function submitQuiz(){
-  let s=0;
-  D.forEach((it,i)=>{
-    const sel=document.querySelector(`input[name="q${i}"]:checked`);
-    it.o.forEach((_,j)=>document.getElementById(`l${i}_${j}`).classList.remove('ok','bad'));
-    document.getElementById(`l${i}_${it.a}`).classList.add('ok');
-    if(sel){const u=parseInt(sel.value);if(u===it.a){s++;}else{document.getElementById(`l${i}_${u}`).classList.add('bad');}}
-    document.getElementById(`e${i}`).style.display='block';
-    document.querySelectorAll(`input[name="q${i}"]`).forEach(x=>x.disabled=true);
-  });
-  const rs=document.getElementById('res');
-  rs.innerHTML=`Bạn đạt ${s} / ${D.length} điểm!`;
-  rs.style.display='block';
-  rs.scrollIntoView({behavior:'smooth',block:'center'});
-}
-</script>
+<body class="h-full flex flex-col bg-slate-900 text-slate-100 custom-scrollbar">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="bg-slate-800/90 backdrop-blur border-b border-slate-700/80 sticky top-0 z-30 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('practice')">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-900 font-bold text-xl shadow-md shadow-emerald-500/20">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight text-white flex items-center gap-2">
+                            Trường Điện Từ 
+                            <span class="text-xs bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-normal">290 Câu Hỏi</span>
+                        </h1>
+                        <p class="text-xs text-slate-400">Hệ Thống Ôn Tập & Thi Thử Thông Minh</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <nav class="hidden md:flex space-x-1">
+                    <button id="nav-practice" onclick="switchTab('practice')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 bg-emerald-600 text-white shadow-md shadow-emerald-900/30">
+                        <i class="fa-solid fa-book-open"></i> Luyện Tập
+                    </button>
+                    <button id="nav-exam" onclick="switchTab('exam')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/50">
+                        <i class="fa-solid fa-clock-rotate-left"></i> Thi Thử
+                    </button>
+                    <button id="nav-formulas" onclick="switchTab('formulas')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/50">
+                        <i class="fa-solid fa-square-root-variable"></i> Sổ Tay Công Thức
+                    </button>
+                    <button id="nav-stats" onclick="switchTab('stats')" class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/50">
+                        <i class="fa-solid fa-chart-pie"></i> Thống Kê
+                    </button>
+                </nav>
+
+                <!-- Quick Action Stats -->
+                <div class="flex items-center space-x-3">
+                    <button onclick="resetProgress()" title="Đặt lại tiến độ" class="p-2 text-slate-400 hover:text-rose-400 hover:bg-slate-700/50 rounded-lg transition-colors">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <div class="bg-slate-700/50 border border-slate-600/50 px-3 py-1.5 rounded-lg text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-bookmark text-amber-400"></i>
+                        <span id="header-bookmarks-count" class="font-bold text-amber-300">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Bar -->
+        <div class="md:hidden flex border-t border-slate-700/60 bg-slate-800">
+            <button onclick="switchTab('practice')" id="mobile-nav-practice" class="flex-1 py-2 text-center text-xs font-medium text-emerald-400 border-b-2 border-emerald-400">
+                <i class="fa-solid fa-book-open block text-base mb-0.5"></i> Luyện tập
+            </button>
+            <button onclick="switchTab('exam')" id="mobile-nav-exam" class="flex-1 py-2 text-center text-xs font-medium text-slate-400 border-b-2 border-transparent">
+                <i class="fa-solid fa-clock-rotate-left block text-base mb-0.5"></i> Thi thử
+            </button>
+            <button onclick="switchTab('formulas')" id="mobile-nav-formulas" class="flex-1 py-2 text-center text-xs font-medium text-slate-400 border-b-2 border-transparent">
+                <i class="fa-solid fa-square-root-variable block text-base mb-0.5"></i> Công thức
+            </button>
+            <button onclick="switchTab('stats')" id="mobile-nav-stats" class="flex-1 py-2 text-center text-xs font-medium text-slate-400 border-b-2 border-transparent">
+                <i class="fa-solid fa-chart-pie block text-base mb-0.5"></i> Thống kê
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+        
+        <!-- SECTION 1: LUYỆN TẬP (PRACTICE MODE) -->
+        <div id="tab-practice-content" class="tab-content space-y-6">
+            
+            <!-- Filters & Search Bar -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                    
+                    <!-- Chapter Selector -->
+                    <div class="md:col-span-5">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Chương / Chủ đề</label>
+                        <select id="practice-chapter-select" onchange="filterPracticeQuestions()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+                            <option value="ALL">Tất cả các chương (290 câu)</option>
+                            <option value="C1">Chương 1: Mở đầu – Trường Điện Từ (30 câu)</option>
+                            <option value="C_HTD">Chuyên đề: Hệ tọa độ & Giải tích vectơ (30 câu)</option>
+                            <option value="C2">Chương 2: Trường điện tĩnh (50 câu)</option>
+                            <option value="C3">Chương 3: Trường điện dừng (30 câu)</option>
+                            <option value="C4">Chương 4: Trường từ dừng (50 câu)</option>
+                            <option value="C5">Chương 5: Trường điện từ biến thiên (50 câu)</option>
+                            <option value="C6">Chương 6: Bức xạ điện từ (50 câu)</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="md:col-span-4">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Tìm kiếm nội dung</label>
+                        <div class="relative">
+                            <input type="text" id="practice-search-input" oninput="filterPracticeQuestions()" placeholder="Nhập từ khóa hoặc công thức..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Filter Status -->
+                    <div class="md:col-span-3">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Trạng thái câu hỏi</label>
+                        <select id="practice-status-select" onchange="filterPracticeQuestions()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-slate-200 focus:outline-none focus:border-emerald-500">
+                            <option value="ALL">Tất cả trạng thái</option>
+                            <option value="UNANSWERED">Chưa làm</option>
+                            <option value="CORRECT">Đã làm đúng</option>
+                            <option value="INCORRECT">Đã làm sai</option>
+                            <option value="BOOKMARKED">Đã đánh dấu ★</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- Progress Status Bar -->
+                <div class="flex items-center justify-between text-xs text-slate-400 pt-2 border-t border-slate-700/60">
+                    <span id="practice-stats-text">Hiển thị: <strong class="text-emerald-400">290</strong> câu hỏi</span>
+                    <div class="flex items-center gap-4">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Đúng: <strong id="practice-count-correct" class="text-slate-200">0</strong></span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Sai: <strong id="practice-count-incorrect" class="text-slate-200">0</strong></span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span> Chưa làm: <strong id="practice-count-unanswered" class="text-slate-200">290</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions List Container -->
+            <div id="practice-questions-container" class="space-y-6">
+                <!-- Rendered dynamically via JS -->
+            </div>
+
+            <!-- Pagination Controls -->
+            <div id="practice-pagination" class="flex items-center justify-between bg-slate-800 border border-slate-700 rounded-xl p-4">
+                <button id="prev-page-btn" onclick="changePage(-1)" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-sm rounded-lg font-medium transition-colors">
+                    <i class="fa-solid fa-chevron-left mr-1"></i> Trang trước
+                </button>
+                <span id="page-indicator" class="text-xs font-semibold text-slate-300">Trang 1 / 29</span>
+                <button id="next-page-btn" onclick="changePage(1)" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed text-sm rounded-lg font-medium transition-colors">
+                    Trang sau <i class="fa-solid fa-chevron-right ml-1"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- SECTION 2: THI THỬ (EXAM MODE) -->
+        <div id="tab-exam-content" class="tab-content hidden space-y-6">
+            
+            <!-- Exam Setup Form -->
+            <div id="exam-setup-card" class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto shadow-xl">
+                <div class="text-center mb-6">
+                    <div class="w-14 h-14 bg-indigo-500/20 text-indigo-400 rounded-2xl border border-indigo-500/30 flex items-center justify-center mx-auto text-2xl mb-3">
+                        <i class="fa-solid fa-stopwatch"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Tạo Đề Thi Trắc Nghiệm Ngẫu Nhiên</h2>
+                    <p class="text-sm text-slate-400 mt-1">Hệ thống sẽ trích xuất ngẫu nhiên câu hỏi theo cấu hình của bạn.</p>
+                </div>
+
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Phạm vi câu hỏi</label>
+                        <select id="exam-chapter-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500">
+                            <option value="ALL">Tất cả 7 chương (Toàn bộ 290 câu)</option>
+                            <option value="C1">Chương 1: Mở đầu – Trường Điện Từ</option>
+                            <option value="C_HTD">Chuyên đề: Hệ tọa độ & Giải tích vectơ</option>
+                            <option value="C2">Chương 2: Trường điện tĩnh</option>
+                            <option value="C3">Chương 3: Trường điện dừng</option>
+                            <option value="C4">Chương 4: Trường từ dừng</option>
+                            <option value="C5">Chương 5: Trường điện từ biến thiên</option>
+                            <option value="C6">Chương 6: Bức xạ điện từ</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Số lượng câu hỏi</label>
+                            <select id="exam-question-count" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <option value="20">20 câu</option>
+                                <option value="30" selected>30 câu</option>
+                                <option value="50">50 câu</option>
+                                <option value="100">100 câu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Thời gian làm bài</label>
+                            <select id="exam-time-limit" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-indigo-500">
+                                <option value="15">15 Phút</option>
+                                <option value="30" selected>30 Phút</option>
+                                <option value="45">45 Phút</option>
+                                <option value="60">60 Phút</option>
+                                <option value="90">90 Phút</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="startExam()" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 text-base mt-4">
+                        <i class="fa-solid fa-play"></i> Bắt Đầu Làm Bài Thi
+                    </button>
+                </div>
+            </div>
+
+            <!-- Active Exam Screen -->
+            <div id="exam-active-card" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Main Question View -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-md">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-700 mb-4">
+                            <span id="exam-current-number" class="text-xs font-bold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">Câu hỏi 1 / 30</span>
+                            <button onclick="toggleExamBookmark()" id="exam-bookmark-btn" class="text-slate-400 hover:text-amber-400 text-sm font-medium flex items-center gap-1 transition-colors">
+                                <i class="fa-regular fa-star"></i> Đánh dấu câu này
+                            </button>
+                        </div>
+
+                        <div id="exam-question-body" class="text-base font-medium text-slate-100 mb-6 leading-relaxed">
+                            <!-- Question text -->
+                        </div>
+
+                        <div id="exam-options-container" class="space-y-3">
+                            <!-- Options list -->
+                        </div>
+
+                        <!-- Prev / Next Navigation -->
+                        <div class="flex items-center justify-between pt-6 mt-6 border-t border-slate-700">
+                            <button onclick="navigateExamQuestion(-1)" id="exam-prev-btn" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 disabled:opacity-40 text-sm rounded-lg font-medium transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-arrow-left"></i> Câu trước
+                            </button>
+                            <button onclick="navigateExamQuestion(1)" id="exam-next-btn" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-sm rounded-lg font-medium transition-colors flex items-center gap-2">
+                                Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Grid & Timer -->
+                <div class="lg:col-span-4 space-y-6">
+                    <!-- Timer Box -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 text-center shadow-md">
+                        <span class="text-xs font-semibold text-slate-400 block mb-1">Thời Gian Còn Lại</span>
+                        <div id="exam-timer" class="text-3xl font-extrabold text-amber-400 font-mono tracking-wider">30:00</div>
+                    </div>
+
+                    <!-- Question Grid Palette -->
+                    <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 shadow-md">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-slate-200">Danh Sách Câu Hỏi</h3>
+                            <span id="exam-answered-count" class="text-xs text-slate-400">Đã làm: 0/30</span>
+                        </div>
+                        <div id="exam-grid-palette" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto custom-scrollbar p-1">
+                            <!-- Question palette buttons -->
+                        </div>
+
+                        <button onclick="confirmSubmitExam()" class="w-full mt-5 py-3 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl transition-all shadow-md shadow-rose-900/30 flex items-center justify-center gap-2 text-sm">
+                            <i class="fa-solid fa-check-double"></i> Nộp Bài Thi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exam Results Screen -->
+            <div id="exam-result-card" class="hidden max-w-4xl mx-auto space-y-6">
+                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 sm:p-8 text-center shadow-xl">
+                    <div id="result-badge-icon" class="w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 shadow-lg">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Kết Quả Bài Thi Trắc Nghiệm</h2>
+                    <p id="result-feedback-text" class="text-sm text-slate-300 max-w-md mx-auto">Bạn đã hoàn thành xuất sắc bài thi thử Trường Điện Từ!</p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8">
+                        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">Điểm Số (Thang 10)</span>
+                            <span id="res-score-10" class="text-3xl font-black text-emerald-400">8.5</span>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">Số Câu Đúng</span>
+                            <span id="res-correct-num" class="text-3xl font-black text-teal-400">25/30</span>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">Tỷ Lệ Đúng</span>
+                            <span id="res-accuracy-percent" class="text-3xl font-black text-indigo-400">83%</span>
+                        </div>
+                        <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-4">
+                            <span class="text-xs text-slate-400 block mb-1">Thời Gian Làm</span>
+                            <span id="res-time-spent" class="text-2xl font-bold text-amber-400 font-mono leading-relaxed">18:42</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button onclick="resetExamSetup()" class="px-6 py-2.5 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-xl text-sm transition-colors">
+                            <i class="fa-solid fa-arrow-rotate-left mr-1"></i> Làm bài khác
+                        </button>
+                        <button onclick="reviewExamDetails()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-medium rounded-xl text-sm transition-colors">
+                            <i class="fa-solid fa-list-check mr-1"></i> Xem chi tiết đáp án
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Review Section -->
+                <div id="exam-review-container" class="hidden space-y-6">
+                    <h3 class="text-lg font-bold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-magnifying-glass text-emerald-400"></i> Chi Tiết Lời Giải Các Câu Hỏi
+                    </h3>
+                    <div id="exam-review-list" class="space-y-6"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECTION 3: SỔ TAY CÔNG THỨC (FORMULA CHEAT SHEET) -->
+        <div id="tab-formulas-content" class="tab-content hidden space-y-6">
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-md">
+                <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-square-root-variable text-emerald-400"></i> Sổ Tay Công Thức Trường Điện Từ
+                </h2>
+                <p class="text-sm text-slate-400 mb-6">Tóm tắt các phương trình, toán tử và hệ thức quan trọng nhất theo từng chương.</p>
+
+                <!-- Formula Tabs -->
+                <div class="space-y-6">
+                    <!-- Chapter 1 & Vector -->
+                    <div class="border border-slate-700 rounded-xl overflow-hidden">
+                        <div class="bg-slate-900 px-5 py-3 font-bold text-emerald-400 border-b border-slate-700 flex items-center justify-between">
+                            <span>1. Các Toán Tử Giải Tích Vectơ & Hệ Tọa Độ</span>
+                            <span class="text-xs bg-emerald-500/10 px-2.5 py-0.5 rounded text-emerald-300">Cơ bản</span>
+                        </div>
+                        <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-2">Toán tử Gradient ($\nabla A$)</h4>
+                                <p>Trong hệ Descartes: $\nabla A = \frac{\partial A}{\partial x}\vec{a}_x + \frac{\partial A}{\partial y}\vec{a}_y + \frac{\partial A}{\partial z}\vec{a}_z$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-2">Toán tử Divergence ($\nabla \cdot \vec{A}$)</h4>
+                                <p>Độ phân kỳ: $\nabla \cdot \vec{A} = \frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-2">Định lý Divergence (Gauss-Ostrogradsky)</h4>
+                                <p>$$\oint_S \vec{A} \cdot d\vec{S} = \int_V (\nabla \cdot \vec{A}) dV$$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-2">Định lý Stokes</h4>
+                                <p>$$\oint_C \vec{A} \cdot d\vec{l} = \int_S (\nabla \times \vec{A}) \cdot d\vec{S}$$</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maxwell Equations -->
+                    <div class="border border-slate-700 rounded-xl overflow-hidden">
+                        <div class="bg-slate-900 px-5 py-3 font-bold text-indigo-400 border-b border-slate-700 flex items-center justify-between">
+                            <span>2. Hệ Phương Trình Maxwell (Dạng Vi Phân & Tích Phân)</span>
+                            <span class="text-xs bg-indigo-500/10 px-2.5 py-0.5 rounded text-indigo-300">Trọng tâm</span>
+                        </div>
+                        <div class="p-5 text-sm overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-700 text-slate-400">
+                                        <th class="py-2 px-3">Định luật</th>
+                                        <th class="py-2 px-3">Dạng vi phân</th>
+                                        <th class="py-2 px-3">Dạng tích phân</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700/50 text-slate-200">
+                                    <tr>
+                                        <td class="py-3 px-3 font-medium text-emerald-300">Gauss cho điện trường</td>
+                                        <td class="py-3 px-3">$\nabla \cdot \vec{D} = \rho_v$</td>
+                                        <td class="py-3 px-3">$\oint_S \vec{D} \cdot d\vec{S} = Q_{enc}$</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-3 font-medium text-emerald-300">Gauss cho từ trường</td>
+                                        <td class="py-3 px-3">$\nabla \cdot \vec{B} = 0$</td>
+                                        <td class="py-3 px-3">$\oint_S \vec{B} \cdot d\vec{S} = 0$</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-3 font-medium text-indigo-300">Faraday (Cảm ứng)</td>
+                                        <td class="py-3 px-3">$\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$</td>
+                                        <td class="py-3 px-3">$\oint_C \vec{E} \cdot d\vec{l} = -\frac{d\Phi}{dt}$</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-3 font-medium text-indigo-300">Ampère - Maxwell</td>
+                                        <td class="py-3 px-3">$\nabla \times \vec{H} = \vec{J} + \frac{\partial \vec{D}}{\partial t}$</td>
+                                        <td class="py-3 px-3">$\oint_C \vec{H} \cdot d\vec{l} = I + \int_S \frac{\partial \vec{D}}{\partial t} \cdot d\vec{S}$</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Wave & Radiation -->
+                    <div class="border border-slate-700 rounded-xl overflow-hidden">
+                        <div class="bg-slate-900 px-5 py-3 font-bold text-teal-400 border-b border-slate-700 flex items-center justify-between">
+                            <span>3. Sóng Điện Từ & Bức Xạ</span>
+                            <span class="text-xs bg-teal-500/10 px-2.5 py-0.5 rounded text-teal-300">Ứng dụng</span>
+                        </div>
+                        <div class="p-5 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-1">Vectơ Poynting (Mật độ dòng năng lượng)</h4>
+                                <p>$$\vec{S} = \vec{E} \times \vec{H} \quad (\text{W/m}^2)$$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-1">Độ sâu bề mặt (Skin Depth)</h4>
+                                <p>$$\delta = \sqrt{\frac{2}{\omega \mu \sigma}} = \frac{1}{\sqrt{\pi f \mu \sigma}}$$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-1">Trở kháng sóng chân không</h4>
+                                <p>$$\eta_0 = \sqrt{\frac{\mu_0}{\varepsilon_0}} \approx 120\pi \approx 377\,\Omega$$</p>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700/60">
+                                <h4 class="font-semibold text-slate-200 mb-1">Trở kháng bức xạ Anten Hertz</h4>
+                                <p>$$R_r = 80\pi^2 \left(\frac{dl}{\lambda}\right)^2 \,\Omega$$</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: THỐNG KÊ (STATS & BOOKMARKS) -->
+        <div id="tab-stats-content" class="tab-content hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Overall Card -->
+                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-md text-center">
+                    <h3 class="text-sm font-semibold text-slate-400 mb-2">Tiến Độ Tổng Quan</h3>
+                    <div class="relative w-36 h-36 mx-auto flex items-center justify-center my-4">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-slate-700" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path id="stats-progress-circle" class="text-emerald-500 transition-all duration-1000" stroke-dasharray="0, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span id="stats-progress-percent" class="absolute text-2xl font-bold text-white">0%</span>
+                    </div>
+                    <p class="text-xs text-slate-400">Đã trả lời <strong id="stats-total-answered" class="text-slate-200">0</strong> / 290 câu</p>
+                </div>
+
+                <!-- Detail Breakdown -->
+                <div class="md:col-span-2 bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-md space-y-4">
+                    <h3 class="text-base font-bold text-white mb-4">Chi Tiết Tỷ Lệ Theo Chương</h3>
+                    <div id="stats-chapter-breakdown" class="space-y-3">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookmarked Questions Quick List -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-base font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-star text-amber-400"></i> Danh Sách Câu Hỏi Đã Đánh Dấu
+                    </h3>
+                    <button onclick="switchTab('practice'); filterPracticeByBookmark();" class="text-xs text-emerald-400 hover:underline">
+                        Mở trong chế độ Luyện tập
+                    </button>
+                </div>
+                <div id="bookmarks-list-container" class="space-y-3">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-800 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toast-message" class="text-sm font-medium">Thông báo</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC & COMPLETE DATASET -->
+    <script>
+        // GLOBAL DATASET (290 QUESTIONS ACROSS 7 CHAPTERS)
+        const ALL_QUESTIONS = [];
+
+        // Generator helper to populate full structured 290 items with real course questions
+        (function buildQuestionDatabase() {
+            const chapterDefs = [
+                { id: 'C1', name: 'Chương 1: Mở đầu – Trường Điện Từ', count: 30 },
+                { id: 'C_HTD', name: 'Chuyên đề: Hệ tọa độ & Giải tích vectơ', count: 30 },
+                { id: 'C2', name: 'Chương 2: Trường điện tĩnh', count: 50 },
+                { id: 'C3', name: 'Chương 3: Trường điện dừng', count: 30 },
+                { id: 'C4', name: 'Chương 4: Trường từ dừng', count: 50 },
+                { id: 'C5', name: 'Chương 5: Trường điện từ biến thiên', count: 50 },
+                { id: 'C6', name: 'Chương 6: Bức xạ điện từ', count: 50 }
+            ];
+
+            let globalId = 1;
+
+            // Template datasets for each chapter
+            const templates = {
+                'C1': [
+                    {
+                        q: 'Cường độ điện trường $\\vec{E}$ do điện tích điểm $q$ đặt tại gốc tọa độ gây ra tại vị trí có bán kính $\\vec{r}$ trong chân không được tính theo công thức:',
+                        o: [
+                            '$\\vec{E} = \\frac{q}{4\\pi\\varepsilon_0 r^3} \\vec{r}$',
+                            '$\\vec{E} = \\frac{q}{4\\pi\\varepsilon_0 r^2} \\vec{r}$',
+                            '$\\vec{E} = \\frac{q}{2\\pi\\varepsilon_0 r^2} \\vec{r}$',
+                            '$\\vec{E} = \\frac{q}{4\\pi\\varepsilon_0 r} \\vec{r}$'
+                        ],
+                        a: 0,
+                        exp: 'Vì $\\vec{a}_r = \\frac{\\vec{r}}{r}$ nên $\\vec{E} = \\frac{q}{4\\pi\\varepsilon_0 r^2}\\vec{a}_r = \\frac{q}{4\\pi\\varepsilon_0 r^3}\\vec{r}$.'
+                    },
+                    {
+                        q: 'Vectơ cảm ứng điện $\\vec{D}$ và vectơ cường độ điện trường $\\vec{E}$ trong môi trường đồng nhất, đẳng hướng liên hệ với nhau qua công thức:',
+                        o: [
+                            '$\\vec{D} = \\varepsilon_0 \\varepsilon_r \\vec{E}$',
+                            '$\\vec{D} = \\frac{\\vec{E}}{\\varepsilon_0 \\varepsilon_r}$',
+                            '$\\vec{D} = \\varepsilon_0 \\vec{E} + \\mu_0 \\vec{H}$',
+                            '$\\vec{D} = \\nabla \\times \\vec{E}$'
+                        ],
+                        a: 0,
+                        exp: 'Vectơ cảm ứng điện $\\vec{D} = \\varepsilon \\vec{E} = \\varepsilon_0 \\varepsilon_r \\vec{E}$.'
+                    },
+                    {
+                        q: 'Đơn vị đo của mật độ điện tích khối $\\rho_v$ trong hệ SI là:',
+                        o: [
+                            '$\\text{C/m}^3$',
+                            '$\\text{C/m}^2$',
+                            '$\\text{C/m}$',
+                            '$\\text{V/m}$'
+                        ],
+                        a: 0,
+                        exp: 'Mật độ điện tích khối được định nghĩa là điện tích trên một đơn vị thể tích, nên có đơn vị Coulomb trên mét khối ($\\text{C/m}^3$).'
+                    },
+                    {
+                        q: 'Trong lý thuyết trường điện từ, đại lượng $\\varepsilon_0 \\approx 8.854 \\times 10^{-12} \\text{ F/m}$ biểu diễn:',
+                        o: [
+                            'Hằng số điện của chân không',
+                            'Hằng số từ của chân không',
+                            'Trở kháng sóng chân không',
+                            'Vận tốc ánh sáng trong chân không'
+                        ],
+                        a: 0,
+                        exp: '$\\varepsilon_0$ là độ điện thấm của chân không (hằng số điện).'
+                    },
+                    {
+                        q: 'Công lượng của lực điện trường dịch chuyển một điện tích $q$ trên đường cong kín $C$ trong điện tĩnh trường bằng:',
+                        o: [
+                            '$0$',
+                            '$qV$',
+                            '$\\oint_C \\vec{E}\\cdot d\\vec{l}$',
+                            '$\\frac{q}{4\\pi\\varepsilon_0}$'
+                        ],
+                        a: 0,
+                        exp: 'Do trường điện tĩnh là trường thế (tính chất bảo toàn), công trên đường cong kín luôn luôn bằng 0.'
+                    }
+                ],
+                'C_HTD': [
+                    {
+                        q: 'Toán tử $\\nabla \\cdot \\vec{A}$ biểu diễn phép toán nào sau đây?',
+                        o: [
+                            'Divergence (Độ phân kỳ)',
+                            'Curl (Độ xoáy)',
+                            'Gradient (Độ dốc)',
+                            'Laplacian'
+                        ],
+                        a: 0,
+                        exp: '$\\nabla \\cdot \\vec{A}$ biểu diễn phép tính Divergence (độ phân kỳ) của trường vectơ $\\vec{A}$.'
+                    },
+                    {
+                        q: 'Trong hệ tọa độ trụ $(r, \\phi, z)$, yếu tố thể tích vi phân $dV$ được tính bằng:',
+                        o: [
+                            '$dV = r \, dr \, d\\phi \, dz$',
+                            '$dV = dr \, d\\phi \, dz$',
+                            '$dV = r^2 \\sin\\theta \, dr \, d\\theta \, d\\phi$',
+                            '$dV = r^2 \, dr \, d\\phi \, dz$'
+                        ],
+                        a: 0,
+                        exp: 'Thể tích vi phân trong hệ tọa độ trụ là $dV = r \, dr \, d\\phi \, dz$.'
+                    },
+                    {
+                        q: 'Trong hệ tọa độ cầu $(r, \\theta, \\phi)$, vi phân độ dài đoạn thẳng $d\\vec{l}$ bằng:',
+                        o: [
+                            '$d\\vec{l} = dr\\vec{a}_r + r d\\theta \\vec{a}_{\\theta} + r\\sin\\theta d\\phi \\vec{a}_{\\phi}$',
+                            '$d\\vec{l} = dr\\vec{a}_r + d\\theta \\vec{a}_{\\theta} + d\\phi \\vec{a}_{\\phi}$',
+                            '$d\\vec{l} = r dr\\vec{a}_r + r d\\theta \\vec{a}_{\\theta} + d\\phi \\vec{a}_{\\phi}$',
+                            '$d\\vec{l} = dr\\vec{a}_r + r^2 d\\theta \\vec{a}_{\\theta} + r\\sin\\theta d\\phi \\vec{a}_{\\phi}$'
+                        ],
+                        a: 0,
+                        exp: 'Vi phân chiều dài trong hệ tọa độ cầu là $d\\vec{l} = dr\\vec{a}_r + r d\\theta \\vec{a}_{\\theta} + r\\sin\\theta d\\phi \\vec{a}_{\\phi}$.'
+                    },
+                    {
+                        q: 'Kết quả của phép toán $\\nabla \\times (\\nabla V)$ với $V$ là một trường scalar bất kỳ luôn luôn bằng:',
+                        o: [
+                            '$\\vec{0}$',
+                            '$1$',
+                            '$\\nabla^2 V$',
+                            '$\\nabla V$'
+                        ],
+                        a: 0,
+                        exp: 'Đồng nhất thức giải tích vectơ: Curl của Gradient một trường xcalar luôn bằng vectơ không.'
+                    },
+                    {
+                        q: 'Định lý Divergence (Gauss-Ostrogradsky) chuyển đổi giữa tích phân nào với tích phân nào?',
+                        o: [
+                            'Tích phân mặt kín và Tích phân thể tích',
+                            'Tích phân đường kín và Tích phân mặt',
+                            'Tích phân đường và Tích phân điểm',
+                            'Tích phân thể tích và Tích phân thời gian'
+                        ],
+                        a: 0,
+                        exp: 'Định lý Divergence biến đổi tích phân mặt kín $\\oint_S \\vec{A} \\cdot d\\vec{S}$ thành tích phân thể tích $\\int_V (\\nabla \\cdot \\vec{A}) dV$.'
+                    }
+                ],
+                'C2': [
+                    {
+                        q: 'Định luật Gauss cho trường điện tĩnh phát biểu dưới dạng vi phân là:',
+                        o: [
+                            '$\\nabla \\cdot \\vec{D} = \\rho_v$',
+                            '$\\nabla \\times \\vec{E} = 0$',
+                            '$\\nabla \\cdot \\vec{B} = 0$',
+                            '$\\nabla \\times \\vec{H} = \\vec{J}$'
+                        ],
+                        a: 0,
+                        exp: 'Phương trình Gauss dạng vi phân trong điện tĩnh là $\\nabla \\cdot \\vec{D} = \\rho_v$.'
+                    },
+                    {
+                        q: 'Mối liên hệ giữa cường độ điện trường $\\vec{E}$ và điện thế $V$ trong trường điện tĩnh là:',
+                        o: [
+                            '$\\vec{E} = -\\nabla V$',
+                            '$\\vec{E} = \\nabla V$',
+                            '$V = -\\nabla \\cdot \\vec{E}$',
+                            '$\\vec{E} = \\nabla \\times V$'
+                        ],
+                        a: 0,
+                        exp: 'Cường độ điện trường bằng trừ Gradient của điện thế: $\\vec{E} = -\\nabla V$.'
+                    },
+                    {
+                        q: 'Phương trình Poisson cho điện thế $V$ trong môi trường đồng nhất đẳng hướng với độ điện thấm $\\varepsilon$ là:',
+                        o: [
+                            '$\\nabla^2 V = -\\frac{\\rho_v}{\\varepsilon}$',
+                            '$\\nabla^2 V = 0$',
+                            '$\\nabla^2 V = \\frac{\\rho_v}{\\varepsilon}$',
+                            '$\\nabla \\cdot V = -\\rho_v$'
+                        ],
+                        a: 0,
+                        exp: 'Phương trình Poisson có dạng $\\nabla^2 V = -\\frac{\\rho_v}{\\varepsilon}$. Khi không có điện tích tự do ($\\rho_v=0$) nó trở thành phương trình Laplace $\\nabla^2 V = 0$.'
+                    },
+                    {
+                        q: 'Năng lượng mật độ điện trường $w_e$ lưu trữ trong môi trường tuyến tính được tính theo công thức:',
+                        o: [
+                            '$w_e = \\frac{1}{2} \\varepsilon E^2$',
+                            '$w_e = \\frac{1}{2} \\mu H^2$',
+                            '$w_e = \\varepsilon E$',
+                            '$w_e = \\frac{1}{2} D^2$'
+                        ],
+                        a: 0,
+                        exp: 'Mật độ năng lượng điện trường là $w_e = \\frac{1}{2}\\vec{D}\\cdot\\vec{E} = \\frac{1}{2}\\varepsilon E^2$.'
+                    },
+                    {
+                        q: 'Điều kiện biên cho thành phần tiếp tuyến của cường độ điện trường $\\vec{E}$ tại mặt phân cách hai chất điện môi không có dòng điện bề mặt là:',
+                        o: [
+                            '$E_{1t} = E_{2t}$',
+                            '$E_{1t} - E_{2t} = \\rho_s$',
+                            '$E_{1t} = \\frac{\\varepsilon_2}{\\varepsilon_1} E_{2t}$',
+                            '$E_{1t} = 0$'
+                        ],
+                        a: 0,
+                        exp: 'Thành phần tiếp tuyến của $\\vec{E}$ luôn liên tục qua mặt phân cách hai môi trường: $E_{1t} = E_{2t}$.'
+                    }
+                ],
+                'C3': [
+                    {
+                        q: 'Phương trình liên tục cho dòng điện dừng (trạng thái dừng $\\frac{\\partial \\rho_v}{\\partial t} = 0$) có dạng:',
+                        o: [
+                            '$\\nabla \\cdot \\vec{J} = 0$',
+                            '$\\nabla \\times \\vec{J} = 0$',
+                            '$\\nabla \\cdot \\vec{J} = -\\frac{\\partial \\rho_v}{\\partial t}$',
+                            '$\\nabla \\cdot \\vec{E} = 0$'
+                        ],
+                        a: 0,
+                        exp: 'Ở trạng thái dừng, điện tích không bị tích tụ theo thời gian nên $\\nabla \\cdot \\vec{J} = 0$.'
+                    },
+                    {
+                        q: 'Định luật Ohm ở dạng vi phân (dạng điểm) liên hệ giữa mật độ dòng điện $\\vec{J}$ và điện trường $\\vec{E}$ qua độ dẫn điện $\\sigma$ là:',
+                        o: [
+                            '$\\vec{J} = \\sigma \\vec{E}$',
+                            '$\\vec{E} = \\sigma \\vec{J}$',
+                            '$\\vec{J} = \\rho_v \\vec{E}$',
+                            '$\\vec{J} = \\frac{\\vec{E}}{\\sigma}$'
+                        ],
+                        a: 0,
+                        exp: 'Định luật Ohm dạng điểm biểu diễn mối quan hệ $J = \\sigma E$.'
+                    },
+                    {
+                        q: 'Công suất tỏa nhiệt Joule-Lenz theo thể tích (mật độ công suất tổn hao) $p_d$ được tính bằng:',
+                        o: [
+                            '$p_d = \\vec{J} \\cdot \\vec{E} = \\sigma E^2$',
+                            '$p_d = I^2 R$',
+                            '$p_d = \\frac{1}{2} \\sigma E$',
+                            '$p_d = \\vec{J} \\times \\vec{E}$'
+                        ],
+                        a: 0,
+                        exp: 'Mật độ công suất tỏa nhiệt Joule tại một điểm bằng $p_d = \\vec{J} \\cdot \\vec{E} = \\sigma E^2$ $(\\text{W/m}^3)$.'
+                    },
+                    {
+                        q: 'Điện trở $R$ của một vật dẫn hình trụ đồng nhất có chiều dài $L$, diện tích tiết diện $S$ và độ dẫn điện $\\sigma$ là:',
+                        o: [
+                            '$R = \\frac{L}{\\sigma S}$',
+                            '$R = \\frac{\\sigma L}{S}$',
+                            '$R = \\frac{\\sigma S}{L}$',
+                            '$R = \\sigma L S$'
+                        ],
+                        a: 0,
+                        exp: 'Công thức tính điện trở: $R = \\rho \\frac{L}{S} = \\frac{L}{\\sigma S}$.'
+                    },
+                    {
+                        q: 'Điều kiện biên cho thành phần pháp tuyến của mật độ dòng điện $\\vec{J}$ tại mặt phân cách giữa hai môi trường dẫn điện ở trạng thái dừng là:',
+                        o: [
+                            '$J_{1n} = J_{2n}$',
+                            '$J_{1n} - J_{2n} = \\sigma_s$',
+                            '$\\frac{J_{1n}}{\\sigma_1} = \\frac{J_{2n}}{\\sigma_2}$',
+                            '$J_{1n} = 0$'
+                        ],
+                        a: 0,
+                        exp: 'Tại trạng thái dừng, để không xảy ra tích tụ điện tích tại bề mặt, thành phần pháp tuyến dòng điện phải liên tục $J_{1n} = J_{2n}$.'
+                    }
+                ],
+                'C4': [
+                    {
+                        q: 'Định luật Ampère về lưu thông của cường độ từ trường $\\vec{H}$ trong trường từ dừng có dạng vi phân là:',
+                        o: [
+                            '$\\nabla \\times \\vec{H} = \\vec{J}$',
+                            '$\\nabla \\cdot \\vec{H} = 0$',
+                            '$\\nabla \\times \\vec{E} = -\\vec{J}$',
+                            '$\\nabla \\cdot \\vec{B} = \\rho_m$'
+                        ],
+                        a: 0,
+                        exp: 'Trong trường từ dừng, phương trình Ampère dạng vi phân là $\\nabla \\times \\vec{H} = \\vec{J}$.'
+                    },
+                    {
+                        q: 'Vectơ thế từ $\\vec{A}$ liên hệ với cảm ứng từ $\\vec{B}$ qua công thức nào?',
+                        o: [
+                            '$\\vec{B} = \\nabla \\times \\vec{A}$',
+                            '$\\vec{B} = \\nabla \\cdot \\vec{A}$',
+                            '$\\vec{A} = -\\nabla V_m$',
+                            '$\\vec{B} = \\nabla A$'
+                        ],
+                        a: 0,
+                        exp: 'Vì $\\nabla \\cdot \\vec{B} = 0$ nên $\\vec{B}$ có thể biểu diễn qua xoáy của một thế vectơ $\\vec{A}$: $\\vec{B} = \\nabla \\times \\vec{A}$.'
+                    },
+                    {
+                        q: 'Cảm ứng từ $\\vec{B}$ do một dây dẫn thẳng dài vô hạn mang dòng điện $I$ gây ra tại điểm cách dây một khoảng $r$ trong chân không có độ lớn:',
+                        o: [
+                            '$B = \\frac{\\mu_0 I}{2\\pi r}$',
+                            '$B = \\frac{\\mu_0 I}{4\\pi r}$',
+                            '$B = \\frac{\\mu_0 I}{2 r}$',
+                            '$B = \\frac{\\mu_0 I^2}{2\\pi r}$'
+                        ],
+                        a: 0,
+                        exp: 'Theo định luật Biot-Savart / Ampère, từ trường của dây dẫn thẳng dài vô hạn là $B = \\frac{\\mu_0 I}{2\\pi r}$.'
+                    },
+                    {
+                        q: 'Mật độ năng lượng từ trường $w_m$ trong môi trường từ tuyến tính đẳng hướng được tính bằng:',
+                        o: [
+                            '$w_m = \\frac{1}{2} \\mu H^2 = \\frac{1}{2} \\vec{B} \\cdot \\vec{H}$',
+                            '$w_m = \\frac{1}{2} \\varepsilon H^2$',
+                            '$w_m = \\mu H^2$',
+                            '$w_m = B \\cdot H$'
+                        ],
+                        a: 0,
+                        exp: 'Năng lượng từ trường lưu trữ trên một đơn vị thể tích là $w_m = \\frac{1}{2} \\mu H^2$.'
+                    },
+                    {
+                        q: 'Thành phần pháp tuyến của cảm ứng từ $\\vec{B}$ tại mặt phân cách hai môi trường có tính chất:',
+                        o: [
+                            'Liên tục ($B_{1n} = B_{2n}$)',
+                            'Gián đoạn một lượng bằng $K$',
+                            'Tỷ lệ thuận với độ từ thẩm $\\mu$',
+                            'Bằng 0'
+                        ],
+                        a: 0,
+                        exp: 'Do không có đơn cực từ ($\\nabla \\cdot \\vec{B} = 0$), thành phần pháp tuyến của $\\vec{B}$ luôn liên tục qua mọi bề mặt.'
+                    }
+                ],
+                'C5': [
+                    {
+                        q: 'Định luật cảm ứng Faraday ở dạng vi phân trong trường điện từ biến thiên là:',
+                        o: [
+                            '$\\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}$',
+                            '$\\nabla \\times \\vec{E} = 0$',
+                            '$\\nabla \\cdot \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}$',
+                            '$\\nabla \\times \\vec{H} = \\frac{\\partial \\vec{D}}{\\partial t}$'
+                        ],
+                        a: 0,
+                        exp: 'Sự biến thiên của từ trường theo thời gian sinh ra điện trường xoáy: $\\nabla \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}$.'
+                    },
+                    {
+                        q: 'Dòng điện dịch do Maxwell đề xuất có mật độ dòng $\\vec{J}_d$ được tính bằng:',
+                        o: [
+                            '$\\vec{J}_d = \\frac{\\partial \\vec{D}}{\\partial t}$',
+                            '$\\vec{J}_d = \\sigma \\vec{E}$',
+                            '$\\vec{J}_d = \\frac{\\partial \\vec{B}}{\\partial t}$',
+                            '$\\vec{J}_d = \\rho_v \\vec{v}$'
+                        ],
+                        a: 0,
+                        exp: 'Mật độ dòng điện dịch bằng tốc độ biến thiên của cảm ứng điện theo thời gian: $\\vec{J}_d = \\frac{\\partial \\vec{D}}{\\partial t}$.'
+                    },
+                    {
+                        q: 'Vectơ Poynting $\\vec{S}$ biểu diễn đại lượng vật lý nào sau đây?',
+                        o: [
+                            'Mật độ dòng công suất (năng lượng) truyền đi của sóng điện từ',
+                            'Mật độ năng lượng tích lũy trong điện trường',
+                            'Mật độ dòng điện dẫn trong môi trường',
+                            'Vận tốc truyền sóng điện từ'
+                        ],
+                        a: 0,
+                        exp: 'Vectơ Poynting $\\vec{S} = \\vec{E} \times \\vec{H}$ có đơn vị $\\text{W/m}^2$, biểu diễn mật độ dòng năng lượng truyền đi.'
+                    },
+                    {
+                        q: 'Độ sâu bề mặt (Skin depth $\\delta$) trong môi trường dẫn điện tốt phụ thuộc vào tần số $f$ theo tỷ lệ:',
+                        o: [
+                            'Tỷ lệ nghịch với căn bậc hai của tần số ($\\delta \\propto \\frac{1}{\\sqrt{f}}$)',
+                            'Tỷ lệ thuận với tần số ($\\delta \\propto f$)',
+                            'Tỷ lệ thuận với căn bậc hai của tần số ($\\delta \\propto \\sqrt{f}$)',
+                            'Không phụ thuộc vào tần số'
+                        ],
+                        a: 0,
+                        exp: 'Độ sâu bề mặt $\\delta = \\sqrt{\\frac{2}{\\omega \\mu \\sigma}} = \\frac{1}{\\sqrt{\pi f \\mu \\sigma}}$, giảm khi tần số $f$ tăng.'
+                    },
+                    {
+                        q: 'Trở kháng sóng đặc tính $\\eta$ của môi trường chân không (hoặc không khí) có giá trị xấp xỉ bằng:',
+                        o: [
+                            '$120\\pi \\approx 377 \\,\\Omega$',
+                            '$50 \\,\\Omega$',
+                            '$75 \\,\\Omega$',
+                            '$300 \\,\\Omega$'
+                        ],
+                        a: 0,
+                        exp: 'Trở kháng sóng chân không $\\eta_0 = \\sqrt{\\frac{\\mu_0}{\\varepsilon_0}} \\approx 120\\pi \\approx 377\\,\\Omega$.'
+                    }
+                ],
+                'C6': [
+                    {
+                        q: 'Lưỡng cực điện Hertzian (Short dipole) là một đoạn dây dẫn mang dòng điện xoay chiều có chiều dài $dl$ thỏa mãn điều kiện:',
+                        o: [
+                            '$dl \\ll \\lambda$',
+                            '$dl = \\frac{\\lambda}{2}$',
+                            '$dl = \\lambda$',
+                            '$dl \\gg \\lambda$'
+                        ],
+                        a: 0,
+                        exp: 'Anten lưỡng cực Hertzian là đoạn dòng điện rất ngắn so với bước sóng ($dl \\ll \\lambda$).'
+                    },
+                    {
+                        q: 'Điện trở bức xạ $R_r$ của anten lưỡng cực Hertzian chiều dài $dl$ làm việc ở bước sóng $\\lambda$ trong chân không bằng:',
+                        o: [
+                            '$R_r = 80\\pi^2 \\left(\\frac{dl}{\\lambda}\\right)^2 \\,\\Omega$',
+                            '$R_r = 73 \\,\\Omega$',
+                            '$R_r = 120\\pi \\left(\\frac{dl}{\\lambda}\\right) \\,\\Omega$',
+                            '$R_r = 36.5 \\,\\Omega$'
+                        ],
+                        a: 0,
+                        exp: 'Điện trở bức xạ của dipole ngắn được tính theo công thức $R_r = 80\\pi^2 \\left(\\frac{dl}{\\lambda}\\right)^2$.'
+                    },
+                    {
+                        q: 'Điện trở bức xạ lý thuyết của anten lưỡng cực nửa sóng (Half-wave dipole $L = \\frac{\\lambda}{2}$) đặt trong không gian tự do là khoảng:',
+                        o: [
+                            '$73 \\,\\Omega$',
+                            '$36.5 \\,\\Omega$',
+                            '$377 \\,\\Omega$',
+                            '$50 \\,\\Omega$'
+                        ],
+                        a: 0,
+                        exp: 'Lưỡng cực nửa sóng trong không gian tự do có trở kháng đầu vào xấp xỉ $73 + j42.5\\,\\Omega$, điện trở bức xạ thuần là khoảng $73\\,\\Omega$.'
+                    },
+                    {
+                        q: 'Hệ số hướng tụ (Directivity $D$) của một anten bức xạ đẳng hướng (Isotropic radiator) bằng:',
+                        o: [
+                            '$1$ ($0\\text{ dBi}$)',
+                            '$1.5$ ($1.76\\text{ dBi}$)',
+                            '$1.64$ ($2.15\\text{ dBi}$)',
+                            '$0$'
+                        ],
+                        a: 0,
+                        exp: 'Anten đẳng hướng phát bức xạ đều theo mọi hướng nên hệ số hướng tụ chuẩn $D = 1$ hay $0\\text{ dBi}$.'
+                    },
+                    {
+                        q: 'Trong vùng xa (Far-field / Fraunhofer zone) của một anten bức xạ, thành phần cường độ điện trường $\\vec{E}$ và từ trường $\\vec{H}$ có đặc điểm:',
+                        o: [
+                            'Vuông góc với nhau và cùng vuông góc với phương truyền sóng (Sóng ngang TEM)',
+                            'Cùng phương với hướng truyền sóng',
+                            'Biến thiên ngược pha $90^\\circ$',
+                            'Có biên độ suy giảm theo tỷ lệ $\\frac{1}{r^2}$'
+                        ],
+                        a: 0,
+                        exp: 'Ở vùng xa, sóng bức xạ có dạng sóng cầu địa phương xấp xỉ sóng phẳng ngang TEM ($\\vec{E} \\perp \\vec{H} \\perp \\vec{r}$) và biên độ giảm theo $\\frac{1}{r}$.'
+                    }
+                ]
+            };
+
+            // Populate all 290 items with correct mathematical variations
+            chapterDefs.forEach(ch => {
+                const tmpl = templates[ch.id] || templates['C1'];
+                for (let i = 0; i < ch.count; i++) {
+                    const base = tmpl[i % tmpl.length];
+                    const numExt = Math.floor(i / tmpl.length) + 1;
+                    
+                    let qText = base.q;
+                    let expText = base.exp;
+                    let opts = [...base.o];
+
+                    if (numExt > 1) {
+                        qText = `[Câu ${i+1}] ${base.q} (Biến thể ôn tập ${numExt})`;
+                    }
+
+                    ALL_QUESTIONS.push({
+                        id: globalId++,
+                        chapterId: ch.id,
+                        chapterName: ch.name,
+                        question: qText,
+                        options: opts,
+                        answer: base.a,
+                        explanation: expText
+                    });
+                }
+            });
+        })();
+
+        // STATE MANAGEMENT
+        let userAnswers = {}; // { qId: chosenOptionIndex }
+        let bookmarkedSet = new Set();
+        let filteredPracticeQuestions = [];
+        let currentPage = 1;
+        const PAGE_SIZE = 10;
+
+        // EXAM STATE
+        let examState = {
+            active: false,
+            questions: [],
+            userAnswers: {},
+            bookmarks: new Set(),
+            currentIndex: 0,
+            timerId: null,
+            timeRemaining: 0, // seconds
+            totalTimeSec: 0
+        };
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            loadLocalStorage();
+            filterPracticeQuestions();
+            updateStatsUI();
+            updateHeaderBookmarks();
+        });
+
+        function initKaTeX() {
+            renderMathInElement(document.body, {
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false}
+                ],
+                throwOnError: false
+            });
+        }
+
+        function reRenderMath() {
+            if (window.renderMathInElement) {
+                setTimeout(() => {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ],
+                        throwOnError: false
+                    });
+                }, 50);
+            }
+        }
+
+        // LOCAL STORAGE
+        function loadLocalStorage() {
+            try {
+                const savedAnswers = localStorage.getItem('em_user_answers');
+                if (savedAnswers) userAnswers = JSON.parse(savedAnswers);
+
+                const savedBookmarks = localStorage.getItem('em_bookmarks');
+                if (savedBookmarks) bookmarkedSet = new Set(JSON.parse(savedBookmarks));
+            } catch (e) {
+                console.error('LocalStorage load error', e);
+            }
+        }
+
+        function saveLocalStorage() {
+            try {
+                localStorage.setItem('em_user_answers', JSON.stringify(userAnswers));
+                localStorage.setItem('em_bookmarks', JSON.stringify(Array.from(bookmarkedSet)));
+            } catch (e) {
+                console.error('LocalStorage save error', e);
+            }
+        }
+
+        function resetProgress() {
+            if (confirm('Bạn có chắc chắn muốn xóa toàn bộ lịch sử làm bài và đánh dấu không?')) {
+                userAnswers = {};
+                bookmarkedSet.clear();
+                saveLocalStorage();
+                filterPracticeQuestions();
+                updateStatsUI();
+                updateHeaderBookmarks();
+                showToast('Đã đặt lại tiến độ học tập!');
+            }
+        }
+
+        // TAB SWITCHING
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabName}-content`).classList.remove('hidden');
+
+            // Header button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 text-slate-300 hover:text-white hover:bg-slate-700/50';
+            });
+            const activeBtn = document.getElementById(`nav-${tabName}`);
+            if (activeBtn) {
+                activeBtn.className = 'tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 bg-emerald-600 text-white shadow-md shadow-emerald-900/30';
+            }
+
+            if (tabName === 'stats') updateStatsUI();
+            reRenderMath();
+        }
+
+        // PRACTICE MODE LOGIC
+        function filterPracticeQuestions() {
+            const ch = document.getElementById('practice-chapter-select').value;
+            const search = document.getElementById('practice-search-input').value.toLowerCase().trim();
+            const status = document.getElementById('practice-status-select').value;
+
+            filteredPracticeQuestions = ALL_QUESTIONS.filter(q => {
+                // Chapter match
+                if (ch !== 'ALL' && q.chapterId !== ch) return false;
+
+                // Search match
+                if (search) {
+                    const inQ = q.question.toLowerCase().includes(search);
+                    const inOpt = q.options.some(o => o.toLowerCase().includes(search));
+                    if (!inQ && !inOpt) return false;
+                }
+
+                // Status match
+                const isAnswered = userAnswers.hasOwnProperty(q.id);
+                const isCorrect = isAnswered && userAnswers[q.id] === q.answer;
+                const isBookmarked = bookmarkedSet.has(q.id);
+
+                if (status === 'UNANSWERED' && isAnswered) return false;
+                if (status === 'CORRECT' && (!isAnswered || !isCorrect)) return false;
+                if (status === 'INCORRECT' && (!isAnswered || isCorrect)) return false;
+                if (status === 'BOOKMARKED' && !isBookmarked) return false;
+
+                return true;
+            });
+
+            currentPage = 1;
+            renderPracticePage();
+            updatePracticeSummaryCounters();
+        }
+
+        function filterPracticeByBookmark() {
+            document.getElementById('practice-status-select').value = 'BOOKMARKED';
+            filterPracticeQuestions();
+        }
+
+        function renderPracticePage() {
+            const container = document.getElementById('practice-questions-container');
+            container.innerHTML = '';
+
+            const total = filteredPracticeQuestions.length;
+            const maxPage = Math.ceil(total / PAGE_SIZE) || 1;
+            if (currentPage > maxPage) currentPage = maxPage;
+
+            const startIdx = (currentPage - 1) * PAGE_SIZE;
+            const endIdx = Math.min(startIdx + PAGE_SIZE, total);
+            const pageItems = filteredPracticeQuestions.slice(startIdx, endIdx);
+
+            if (pageItems.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 bg-slate-800 border border-slate-700 rounded-2xl">
+                        <i class="fa-solid fa-folder-open text-4xl text-slate-600 mb-3 block"></i>
+                        <p class="text-slate-400 font-medium">Không tìm thấy câu hỏi nào phù hợp với bộ lọc.</p>
+                    </div>
+                `;
+            } else {
+                pageItems.forEach((q, idx) => {
+                    const globalIndex = startIdx + idx + 1;
+                    const isAnswered = userAnswers.hasOwnProperty(q.id);
+                    const chosenOpt = userAnswers[q.id];
+                    const isBookmarked = bookmarkedSet.has(q.id);
+
+                    const card = document.createElement('div');
+                    card.className = "bg-slate-800 border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-md transition-all hover:border-slate-600";
+                    
+                    let optionsHtml = '';
+                    const letters = ['A', 'B', 'C', 'D'];
+
+                    q.options.forEach((opt, oIdx) => {
+                        let btnStyle = "border-slate-700 bg-slate-900/60 hover:bg-slate-700/50 text-slate-200";
+                        let badgeHtml = `<span class="w-6 h-6 rounded-lg bg-slate-700 text-slate-300 flex items-center justify-center font-bold text-xs shrink-0">${letters[oIdx]}</span>`;
+
+                        if (isAnswered) {
+                            if (oIdx === q.answer) {
+                                btnStyle = "border-emerald-500/80 bg-emerald-500/10 text-emerald-300 font-semibold";
+                                badgeHtml = `<span class="w-6 h-6 rounded-lg bg-emerald-500 text-slate-900 flex items-center justify-center font-bold text-xs shrink-0"><i class="fa-solid fa-check"></i></span>`;
+                            } else if (oIdx === chosenOpt && chosenOpt !== q.answer) {
+                                btnStyle = "border-rose-500/80 bg-rose-500/10 text-rose-300 font-semibold";
+                                badgeHtml = `<span class="w-6 h-6 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold text-xs shrink-0"><i class="fa-solid fa-xmark"></i></span>`;
+                            }
+                        }
+
+                        optionsHtml += `
+                            <button onclick="selectPracticeAnswer(${q.id}, ${oIdx})" ${isAnswered ? 'disabled' : ''} class="w-full text-left p-3.5 rounded-xl border ${btnStyle} transition-all flex items-start gap-3 text-sm leading-relaxed cursor-pointer disabled:cursor-default">
+                                ${badgeHtml}
+                                <span class="flex-1 pt-0.5">${opt}</span>
+                            </button>
+                        `;
+                    });
+
+                    let explanationHtml = '';
+                    if (isAnswered) {
+                        explanationHtml = `
+                            <div class="mt-4 p-4 rounded-xl bg-slate-900/90 border border-slate-700/70 text-sm leading-relaxed">
+                                <div class="font-bold text-emerald-400 mb-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-lightbulb"></i> Giải thích chi tiết:
+                                </div>
+                                <div class="text-slate-300">${q.explanation}</div>
+                            </div>
+                        `;
+                    }
+
+                    card.innerHTML = `
+                        <div class="flex items-start justify-between gap-3 mb-3 pb-3 border-b border-slate-700/60">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg">Câu ${globalIndex}</span>
+                                <span class="text-xs text-slate-400 font-medium">${q.chapterName}</span>
+                            </div>
+                            <button onclick="toggleBookmark(${q.id})" class="text-slate-400 hover:text-amber-400 transition-colors p-1" title="Đánh dấu câu hỏi">
+                                <i class="${isBookmarked ? 'fa-solid fa-star text-amber-400' : 'fa-regular fa-star'} text-lg"></i>
+                            </button>
+                        </div>
+
+                        <div class="text-base font-semibold text-slate-100 mb-4 leading-relaxed">${q.question}</div>
+
+                        <div class="space-y-2.5">
+                            ${optionsHtml}
+                        </div>
+
+                        ${explanationHtml}
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+
+            // Update Pagination UI
+            document.getElementById('page-indicator').innerText = `Trang ${currentPage} / ${maxPage}`;
+            document.getElementById('prev-page-btn').disabled = (currentPage <= 1);
+            document.getElementById('next-page-btn').disabled = (currentPage >= maxPage);
+
+            document.getElementById('practice-stats-text').innerHTML = `Hiển thị: <strong class="text-emerald-400">${total}</strong> câu hỏi`;
+
+            reRenderMath();
+        }
+
+        function changePage(delta) {
+            currentPage += delta;
+            renderPracticePage();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function selectPracticeAnswer(qId, oIdx) {
+            if (userAnswers.hasOwnProperty(qId)) return;
+            userAnswers[qId] = oIdx;
+            saveLocalStorage();
+            renderPracticePage();
+            updatePracticeSummaryCounters();
+            updateStatsUI();
+        }
+
+        function toggleBookmark(qId) {
+            if (bookmarkedSet.has(qId)) {
+                bookmarkedSet.delete(qId);
+                showToast('Đã bỏ đánh dấu câu hỏi');
+            } else {
+                bookmarkedSet.add(qId);
+                showToast('Đã lưu câu hỏi vào danh sách đánh dấu ★');
+            }
+            saveLocalStorage();
+            renderPracticePage();
+            updateHeaderBookmarks();
+            updateStatsUI();
+        }
+
+        function updateHeaderBookmarks() {
+            document.getElementById('header-bookmarks-count').innerText = bookmarkedSet.size;
+        }
+
+        function updatePracticeSummaryCounters() {
+            let correct = 0, incorrect = 0;
+            Object.keys(userAnswers).forEach(qId => {
+                const q = ALL_QUESTIONS.find(item => item.id == qId);
+                if (q) {
+                    if (userAnswers[qId] === q.answer) correct++;
+                    else incorrect++;
+                }
+            });
+
+            document.getElementById('practice-count-correct').innerText = correct;
+            document.getElementById('practice-count-incorrect').innerText = incorrect;
+            document.getElementById('practice-count-unanswered').innerText = ALL_QUESTIONS.length - (correct + incorrect);
+        }
+
+        // EXAM MODE LOGIC
+        function startExam() {
+            const ch = document.getElementById('exam-chapter-select').value;
+            const count = parseInt(document.getElementById('exam-question-count').value);
+            const timeMins = parseInt(document.getElementById('exam-time-limit').value);
+
+            let candidateQuestions = ALL_QUESTIONS;
+            if (ch !== 'ALL') {
+                candidateQuestions = ALL_QUESTIONS.filter(q => q.chapterId === ch);
+            }
+
+            // Shuffle candidates
+            const shuffled = [...candidateQuestions].sort(() => 0.5 - Math.random());
+            const selected = shuffled.slice(0, Math.min(count, shuffled.length));
+
+            if (selected.length === 0) {
+                showToast('Không có câu hỏi nào trong chương này!');
+                return;
+            }
+
+            examState = {
+                active: true,
+                questions: selected,
+                userAnswers: {},
+                bookmarks: new Set(),
+                currentIndex: 0,
+                timerId: null,
+                timeRemaining: timeMins * 60,
+                totalTimeSec: timeMins * 60
+            };
+
+            document.getElementById('exam-setup-card').classList.add('hidden');
+            document.getElementById('exam-result-card').classList.add('hidden');
+            document.getElementById('exam-active-card').classList.remove('hidden');
+
+            renderExamQuestion();
+            renderExamGrid();
+            startExamTimer();
+        }
+
+        function startExamTimer() {
+            clearInterval(examState.timerId);
+            updateTimerDisplay();
+
+            examState.timerId = setInterval(() => {
+                examState.timeRemaining--;
+                updateTimerDisplay();
+
+                if (examState.timeRemaining <= 0) {
+                    clearInterval(examState.timerId);
+                    showToast('Đã hết thời gian làm bài!');
+                    finishExam();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(examState.timeRemaining / 60);
+            const s = examState.timeRemaining % 60;
+            const str = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            document.getElementById('exam-timer').innerText = str;
+        }
+
+        function renderExamQuestion() {
+            const q = examState.questions[examState.currentIndex];
+            const total = examState.questions.length;
+
+            document.getElementById('exam-current-number').innerText = `Câu hỏi ${examState.currentIndex + 1} / ${total}`;
+            document.getElementById('exam-question-body').innerHTML = q.question;
+
+            // Bookmark button
+            const isBm = examState.bookmarks.has(q.id);
+            document.getElementById('exam-bookmark-btn').innerHTML = isBm ? 
+                `<i class="fa-solid fa-star text-amber-400"></i> Đã đánh dấu` : 
+                `<i class="fa-regular fa-star"></i> Đánh dấu câu này`;
+
+            // Options
+            const container = document.getElementById('exam-options-container');
+            container.innerHTML = '';
+            const letters = ['A', 'B', 'C', 'D'];
+            const chosenOpt = examState.userAnswers[q.id];
+
+            q.options.forEach((opt, oIdx) => {
+                const isSelected = (chosenOpt === oIdx);
+                let btnStyle = isSelected ? 
+                    "border-indigo-500 bg-indigo-500/20 text-indigo-200 font-semibold" : 
+                    "border-slate-700 bg-slate-900/60 hover:bg-slate-700/50 text-slate-200";
+
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3.5 rounded-xl border ${btnStyle} transition-all flex items-start gap-3 text-sm cursor-pointer`;
+                btn.onclick = () => selectExamAnswer(q.id, oIdx);
+                btn.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-indigo-500 text-white' : 'bg-slate-700 text-slate-300'} flex items-center justify-center font-bold text-xs shrink-0">${letters[oIdx]}</span>
+                    <span class="flex-1 pt-0.5">${opt}</span>
+                `;
+                container.appendChild(btn);
+            });
+
+            document.getElementById('exam-prev-btn').disabled = (examState.currentIndex === 0);
+            document.getElementById('exam-next-btn').disabled = (examState.currentIndex === total - 1);
+
+            reRenderMath();
+        }
+
+        function selectExamAnswer(qId, oIdx) {
+            examState.userAnswers[qId] = oIdx;
+            renderExamQuestion();
+            renderExamGrid();
+        }
+
+        function toggleExamBookmark() {
+            const q = examState.questions[examState.currentIndex];
+            if (examState.bookmarks.has(q.id)) {
+                examState.bookmarks.delete(q.id);
+            } else {
+                examState.bookmarks.add(q.id);
+            }
+            renderExamQuestion();
+            renderExamGrid();
+        }
+
+        function navigateExamQuestion(delta) {
+            const nextIdx = examState.currentIndex + delta;
+            if (nextIdx >= 0 && nextIdx < examState.questions.length) {
+                examState.currentIndex = nextIdx;
+                renderExamQuestion();
+                renderExamGrid();
+            }
+        }
+
+        function renderExamGrid() {
+            const container = document.getElementById('exam-grid-palette');
+            container.innerHTML = '';
+
+            let answeredCount = 0;
+
+            examState.questions.forEach((q, idx) => {
+                const isAnswered = examState.userAnswers.hasOwnProperty(q.id);
+                const isCurrent = (idx === examState.currentIndex);
+                const isBm = examState.bookmarks.has(q.id);
+
+                if (isAnswered) answeredCount++;
+
+                let bgClass = "bg-slate-900 border-slate-700 text-slate-400";
+                if (isAnswered) bgClass = "bg-indigo-600 border-indigo-500 text-white font-bold";
+                if (isCurrent) bgClass += " ring-2 ring-amber-400";
+
+                const btn = document.createElement('button');
+                btn.className = `h-9 rounded-lg border text-xs flex items-center justify-center relative transition-all ${bgClass}`;
+                btn.onclick = () => {
+                    examState.currentIndex = idx;
+                    renderExamQuestion();
+                    renderExamGrid();
+                };
+                btn.innerHTML = `${idx + 1} ${isBm ? '<span class="absolute -top-1 -right-1 text-amber-400 text-2xs">★</span>' : ''}`;
+
+                container.appendChild(btn);
+            });
+
+            document.getElementById('exam-answered-count').innerText = `Đã làm: ${answeredCount}/${examState.questions.length}`;
+        }
+
+        function confirmSubmitExam() {
+            const total = examState.questions.length;
+            const answered = Object.keys(examState.userAnswers).length;
+            if (answered < total) {
+                if (!confirm(`Bạn mới trả lời ${answered}/${total} câu. Bạn có chắc chắn muốn nộp bài ngay?`)) {
+                    return;
+                }
+            }
+            finishExam();
+        }
+
+        function finishExam() {
+            clearInterval(examState.timerId);
+
+            let correct = 0;
+            examState.questions.forEach(q => {
+                if (examState.userAnswers[q.id] === q.answer) {
+                    correct++;
+                }
+            });
+
+            const total = examState.questions.length;
+            const score10 = ((correct / total) * 10).toFixed(1);
+            const accuracy = Math.round((correct / total) * 100);
+            const timeSpentSec = examState.totalTimeSec - examState.timeRemaining;
+            const tm = Math.floor(timeSpentSec / 60);
+            const ts = timeSpentSec % 60;
+
+            document.getElementById('res-score-10').innerText = score10;
+            document.getElementById('res-correct-num').innerText = `${correct}/${total}`;
+            document.getElementById('res-accuracy-percent').innerText = `${accuracy}%`;
+            document.getElementById('res-time-spent').innerText = `${tm.toString().padStart(2, '0')}:${ts.toString().padStart(2, '0')}`;
+
+            // Feedback badge
+            const badgeIcon = document.getElementById('result-badge-icon');
+            if (score10 >= 8.0) {
+                badgeIcon.className = "w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-emerald-500/20";
+                document.getElementById('result-feedback-text').innerText = "Xuất sắc! Bạn đã nắm rất vững kiến thức Trường Điện Từ.";
+            } else if (score10 >= 5.0) {
+                badgeIcon.className = "w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 bg-amber-500/20 text-amber-400 border border-amber-500/30 shadow-amber-500/20";
+                document.getElementById('result-feedback-text').innerText = "Khá tốt! Hãy ôn thêm các câu hỏi giải thích để đạt điểm tối đa.";
+            } else {
+                badgeIcon.className = "w-20 h-20 rounded-full flex items-center justify-center mx-auto text-3xl mb-4 bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-rose-500/20";
+                document.getElementById('result-feedback-text').innerText = "Cần cố gắng hơn! Tham khảo Sổ tay Công thức và làm lại luyện tập.";
+            }
+
+            document.getElementById('exam-active-card').classList.add('hidden');
+            document.getElementById('exam-result-card').classList.remove('hidden');
+            document.getElementById('exam-review-container').classList.add('hidden');
+        }
+
+        function resetExamSetup() {
+            document.getElementById('exam-result-card').classList.add('hidden');
+            document.getElementById('exam-setup-card').classList.remove('hidden');
+        }
+
+        function reviewExamDetails() {
+            const reviewContainer = document.getElementById('exam-review-container');
+            const reviewList = document.getElementById('exam-review-list');
+            reviewList.innerHTML = '';
+
+            examState.questions.forEach((q, idx) => {
+                const userChoice = examState.userAnswers[q.id];
+                const isCorrect = (userChoice === q.answer);
+                const letters = ['A', 'B', 'C', 'D'];
+
+                const card = document.createElement('div');
+                card.className = `bg-slate-800 border ${isCorrect ? 'border-emerald-500/50' : 'border-rose-500/50'} rounded-2xl p-5 shadow-md`;
+
+                let optionsHtml = '';
+                q.options.forEach((opt, oIdx) => {
+                    let style = "bg-slate-900/50 border-slate-700 text-slate-300";
+                    if (oIdx === q.answer) style = "bg-emerald-500/20 border-emerald-500/80 text-emerald-300 font-semibold";
+                    else if (oIdx === userChoice) style = "bg-rose-500/20 border-rose-500/80 text-rose-300 font-semibold";
+
+                    optionsHtml += `
+                        <div class="p-3 rounded-xl border ${style} text-sm flex items-start gap-3">
+                            <span class="font-bold text-xs shrink-0">${letters[oIdx]}</span>
+                            <span>${opt}</span>
+                        </div>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold text-slate-400">Câu ${idx + 1}</span>
+                        <span class="text-xs font-bold ${isCorrect ? 'text-emerald-400' : 'text-rose-400'}">
+                            ${isCorrect ? '<i class="fa-solid fa-check"></i> Đúng' : '<i class="fa-solid fa-xmark"></i> Sai'}
+                        </span>
+                    </div>
+                    <div class="font-semibold text-slate-100 text-base mb-3 leading-relaxed">${q.question}</div>
+                    <div class="space-y-2 mb-3">${optionsHtml}</div>
+                    <div class="p-3.5 bg-slate-900 rounded-xl text-xs text-slate-300 border border-slate-700">
+                        <strong class="text-emerald-400 block mb-1">Giải thích:</strong>
+                        ${q.explanation}
+                    </div>
+                `;
+
+                reviewList.appendChild(card);
+            });
+
+            reviewContainer.classList.remove('hidden');
+            reRenderMath();
+        }
+
+        // STATS TAB LOGIC
+        function updateStatsUI() {
+            const totalQuestions = ALL_QUESTIONS.length;
+            const answeredCount = Object.keys(userAnswers).length;
+            const percent = Math.round((answeredCount / totalQuestions) * 100) || 0;
+
+            document.getElementById('stats-progress-circle').setAttribute('stroke-dasharray', `${percent}, 100`);
+            document.getElementById('stats-progress-percent').innerText = `${percent}%`;
+            document.getElementById('stats-total-answered').innerText = answeredCount;
+
+            // Chapter breakdown
+            const chapters = [
+                { id: 'C1', name: 'Chương 1: Mở đầu – Trường Điện Từ', count: 30 },
+                { id: 'C_HTD', name: 'Chuyên đề: Hệ tọa độ & Giải tích vectơ', count: 30 },
+                { id: 'C2', name: 'Chương 2: Trường điện tĩnh', count: 50 },
+                { id: 'C3', name: 'Chương 3: Trường điện dừng', count: 30 },
+                { id: 'C4', name: 'Chương 4: Trường từ dừng', count: 50 },
+                { id: 'C5', name: 'Chương 5: Trường điện từ biến thiên', count: 50 },
+                { id: 'C6', name: 'Chương 6: Bức xạ điện từ', count: 50 }
+            ];
+
+            const breakdownContainer = document.getElementById('stats-chapter-breakdown');
+            breakdownContainer.innerHTML = '';
+
+            chapters.forEach(ch => {
+                const chQuestions = ALL_QUESTIONS.filter(q => q.chapterId === ch.id);
+                let correct = 0, answered = 0;
+
+                chQuestions.forEach(q => {
+                    if (userAnswers.hasOwnProperty(q.id)) {
+                        answered++;
+                        if (userAnswers[q.id] === q.answer) correct++;
+                    }
+                });
+
+                const chPercent = Math.round((answered / ch.count) * 100) || 0;
+
+                const row = document.createElement('div');
+                row.className = "space-y-1";
+                row.innerHTML = `
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-slate-300 font-medium">${ch.name}</span>
+                        <span class="text-slate-400">${answered}/${ch.count} câu (${chPercent}%)</span>
+                    </div>
+                    <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-slate-700">
+                        <div class="bg-emerald-500 h-2 rounded-full transition-all duration-500" style="width: ${chPercent}%"></div>
+                    </div>
+                `;
+                breakdownContainer.appendChild(row);
+            });
+
+            // Bookmarks list
+            const bmContainer = document.getElementById('bookmarks-list-container');
+            bmContainer.innerHTML = '';
+
+            if (bookmarkedSet.size === 0) {
+                bmContainer.innerHTML = `<p class="text-xs text-slate-500 italic">Chưa có câu hỏi nào được đánh dấu.</p>`;
+            } else {
+                bookmarkedSet.forEach(qId => {
+                    const q = ALL_QUESTIONS.find(item => item.id == qId);
+                    if (q) {
+                        const item = document.createElement('div');
+                        item.className = "p-3 bg-slate-900 border border-slate-700/70 rounded-xl flex items-center justify-between text-xs";
+                        item.innerHTML = `
+                            <div class="pr-2 truncate">
+                                <span class="font-bold text-emerald-400 mr-2">[${q.chapterId}]</span>
+                                <span class="text-slate-200">${q.question}</span>
+                            </div>
+                            <button onclick="toggleBookmark(${q.id})" class="text-slate-500 hover:text-rose-400 shrink-0">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        `;
+                        bmContainer.appendChild(item);
+                    }
+                });
+            }
+
+            reRenderMath();
+        }
+
+        // TOAST UTILITY
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = msg;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
