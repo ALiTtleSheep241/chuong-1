@@ -110,4 +110,115 @@ function submitQuiz(){
 }
 </script>
 </body>
+  <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quiz: Hệ tọa độ – Trường Điện Từ</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f0f2f5;color:#333;line-height:1.6;padding:20px;margin:0}
+.container{max-width:800px;margin:auto;background:#fff;padding:30px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+h1{text-align:center;color:#1a73e8;margin-bottom:6px}
+.sub{text-align:center;color:#666;margin-bottom:28px}
+.qb{margin-bottom:22px;padding:18px;border:1px solid #e0e0e0;border-radius:8px;background:#fafafa}
+.qt{font-weight:600;font-size:1.05em;margin-bottom:12px}
+.opts{list-style:none;padding:0;margin:0}
+.opts li{margin-bottom:8px}
+.opts label{display:flex;align-items:center;padding:10px;border:1px solid #ccc;border-radius:5px;cursor:pointer;transition:background-color .2s;overflow-x:auto}
+.opts label:hover{background:#e8f0fe}
+input[type=radio]{margin-right:14px;transform:scale(1.2);flex:none}
+mjx-container[jax="SVG"]{margin:0 .15em!important}
+.btn{display:block;width:100%;padding:15px;font-size:1.2em;color:#fff;background:#1a73e8;border:none;border-radius:8px;cursor:pointer;margin-top:28px;font-weight:bold}
+.btn:hover{background:#1557b0}
+.res{margin-top:28px;padding:20px;background:#e6f4ea;border:1px solid #ceead6;border-radius:8px;text-align:center;font-size:1.5em;font-weight:bold;display:none;color:#155724}
+.exp{margin-top:14px;padding:14px;background:#fff3e0;border-left:4px solid #ff9800;border-radius:4px;display:none;font-size:.95em;overflow-x:auto}
+.ok{background:#d4edda!important;border-color:#c3e6cb!important;color:#155724;font-weight:bold}
+.bad{background:#f8d7da!important;border-color:#f5c6cb!important;color:#721c24}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']]},svg:{fontCache:'global'}};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>Trắc nghiệm: Hệ tọa độ</h1>
+<div class="sub" id="sub">30 câu lý thuyết – Descartes, trụ, cầu – chọn đáp án là có kết quả ngay</div>
+<div id="qz"></div>
+<button class="btn" onclick="submitQuiz()">Xem điểm tổng kết</button>
+<div id="res" class="res"></div>
+</div>
+<script>
+const r=String.raw;
+const X=r`\vec{i}_x`,Y=r`\vec{i}_y`,Z=r`\vec{i}_z`,R=r`\vec{i}_r`,P=r`\vec{i}_\phi`,T=r`\vec{i}_\theta`;
+const w=s=>r`\(${s}\)`;
+const D=[
+{q:r`Các vectơ đơn vị chỉ phương của hệ tọa độ Descartes là:`,o:[w(`${R},${P},${Z}`),w(`${X},${Y},${Z}`),w(`${R},${T},${P}`),w(`${X},${T},${Z}`)],a:1,e:r`Hệ Descartes dùng \(${X},${Y},${Z}\).`},
+{q:r`Trong hệ tọa độ Descartes, hệ thức nào sau đây đúng?`,o:[w(`${Z}=${Y}\\times${X}`),w(`${Z}=${X}\\times${Y}`),w(`${Z}=${Z}\\times${X}`),w(`${Z}=${X}\\cdot${Y}`)],a:1,e:r`Descartes: \(${X}=${Y}\times${Z}\); \(${Y}=${Z}\times${X}\); \(${Z}=${X}\times${Y}\).`},
+{q:r`Trong hệ tọa độ cầu \(P(r,\theta,\phi)\), góc \(\theta\) là:`,o:[r`Góc giữa bán kính \(r\) và trục z`,r`Góc quay quanh trục z, tính từ trục x`,r`Góc giữa bán kính \(r\) và trục x`,r`Khoảng cách từ điểm đến trục z`],a:0,e:r`Theo hình trong slide: \(\theta\) là góc giữa \(r\) và trục z, còn \(\phi\) là góc quay quanh trục z (tính từ trục x).`},
+{q:r`Biểu diễn một vectơ \(\vec{A}\) trong hệ tọa độ Descartes là:`,o:[w(`\\vec{A}=A_r${R}+A_\\phi${P}+A_z${Z}`),w(`\\vec{A}=A_r${R}+A_\\theta${T}+A_\\phi${P}`),w(`\\vec{A}=A_x+A_y+A_z`),w(`\\vec{A}=A_x${X}+A_y${Y}+A_z${Z}`)],a:3,e:r`Descartes: \(\vec{A}=A_x${X}+A_y${Y}+A_z${Z}\).`},
+{q:r`Yếu tố vi phân đường trong hệ Descartes là:`,o:[w(`d\\vec{l}=dx\\,${X}+dy\\,${Y}+dz\\,${Z}`),w(`d\\vec{l}=dx\\,${X}+r\\,dy\\,${Y}+dz\\,${Z}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\phi\\,${P}+dz\\,${Z}`),w(`d\\vec{l}=dx\\,dy\\,dz`)],a:0,e:r`Descartes: \(d\vec{l}=dx\,${X}+dy\,${Y}+dz\,${Z}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_x\) trong hệ Descartes là:`,o:[w(`\\pm dx\\,dz\\,${X}`),w(`\\pm dy\\,dz\\,${X}`),w(`\\pm dx\\,dy\\,${X}`),w(`\\pm dy\\,dz\\,${Y}`)],a:1,e:r`Mặt vuông góc với trục x: \(d\vec{S}_x=\pm dy\,dz\,${X}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_y\) trong hệ Descartes là:`,o:[w(`\\pm dy\\,dz\\,${Y}`),w(`\\pm dx\\,dy\\,${Y}`),w(`\\pm dx\\,dz\\,${Y}`),w(`\\pm dx\\,dz\\,${X}`)],a:2,e:r`\(d\vec{S}_y=\pm dx\,dz\,${Y}\); tương tự \(d\vec{S}_z=\pm dx\,dy\,${Z}\).`},
+{q:r`Yếu tố vi phân thể tích trong hệ Descartes là:`,o:[w(`dV=dx+dy+dz`),w(`dV=r\\,dx\\,dy\\,dz`),w(`dV=dx\\,dy\\,dz\\,${X}`),w(`dV=dx\\,dy\\,dz`)],a:3,e:r`Descartes: \(dV=dx\,dy\,dz\).`},
+{q:r`Các vectơ đơn vị chỉ phương của hệ tọa độ trụ là:`,o:[w(`${X},${Y},${Z}`),w(`${R},${T},${P}`),w(`${R},${P},${Z}`),w(`${R},${T},${Z}`)],a:2,e:r`Hệ trụ dùng \(${R},${P},${Z}\).`},
+{q:r`Trong hệ tọa độ trụ, \(${R}\) bằng:`,o:[w(`${Z}\\times${P}`),w(`${P}\\times${Z}`),w(`${R}\\times${P}`),w(`${T}\\times${P}`)],a:1,e:r`Hệ trụ: \(${R}=${P}\times${Z}\).`},
+{q:r`Trong hệ tọa độ trụ, \(${P}\) bằng:`,o:[w(`${R}\\times${Z}`),w(`${Z}\\times${R}`),w(`${P}\\times${R}`),w(`${R}\\times${T}`)],a:1,e:r`Hệ trụ: \(${P}=${Z}\times${R}\).`},
+{q:r`Trong hệ tọa độ trụ, \(${Z}\) bằng:`,o:[w(`${P}\\times${R}`),w(`${Z}\\times${R}`),w(`${R}\\times${P}`),w(`${Z}\\times${P}`)],a:2,e:r`Hệ trụ: \(${Z}=${R}\times${P}\).`},
+{q:r`Yếu tố vi phân đường trong hệ tọa độ trụ là:`,o:[w(`d\\vec{l}=dr\\,${R}+d\\phi\\,${P}+dz\\,${Z}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\theta\\,${T}+r\\sin\\theta\\,d\\phi\\,${P}`),w(`d\\vec{l}=dx\\,${X}+dy\\,${Y}+dz\\,${Z}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\phi\\,${P}+dz\\,${Z}`)],a:3,e:r`Hệ trụ: \(d\vec{l}=dr\,${R}+r\,d\phi\,${P}+dz\,${Z}\) (thành phần theo \(\phi\) có thêm hệ số \(r\)).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_r\) trong hệ tọa độ trụ là:`,o:[w(`\\pm r\\,dr\\,d\\phi\\,${R}`),w(`\\pm dr\\,dz\\,${R}`),w(`\\pm r\\,d\\phi\\,dz\\,${R}`),w(`\\pm r^2\\sin\\theta\\,d\\theta\\,d\\phi\\,${R}`)],a:2,e:r`Mặt trụ bán kính \(r\): \(d\vec{S}_r=\pm r\,d\phi\,dz\,${R}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_\phi\) trong hệ tọa độ trụ là:`,o:[w(`\\pm r\\,d\\phi\\,dz\\,${P}`),w(`\\pm dr\\,dz\\,${P}`),w(`\\pm r\\,dr\\,d\\phi\\,${P}`),w(`\\pm dr\\,d\\phi\\,${P}`)],a:1,e:r`\(d\vec{S}_\phi=\pm dr\,dz\,${P}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_z\) trong hệ tọa độ trụ là:`,o:[w(`\\pm r\\,dr\\,d\\phi\\,${Z}`),w(`\\pm dr\\,dz\\,${Z}`),w(`\\pm r\\,d\\phi\\,dz\\,${Z}`),w(`\\pm dx\\,dy\\,${Z}`)],a:0,e:r`\(d\vec{S}_z=\pm r\,dr\,d\phi\,${Z}\).`},
+{q:r`Yếu tố vi phân thể tích trong hệ tọa độ trụ là:`,o:[w(`dV=dr\\,d\\phi\\,dz`),w(`dV=r\\,dr\\,d\\phi\\,dz`),w(`dV=r^2\\,dr\\,d\\phi\\,dz`),w(`dV=r^2\\sin\\theta\\,dr\\,d\\phi\\,dz`)],a:1,e:r`Hệ trụ: \(dV=r\,dr\,d\phi\,dz\).`},
+{q:r`Các vectơ đơn vị chỉ phương của hệ tọa độ cầu là:`,o:[w(`${R},${P},${Z}`),w(`${X},${Y},${Z}`),w(`${R},${T},${Z}`),w(`${R},${T},${P}`)],a:3,e:r`Hệ cầu dùng \(${R},${T},${P}\).`},
+{q:r`Trong hệ tọa độ cầu, \(${R}\) bằng:`,o:[w(`${T}\\times${P}`),w(`${P}\\times${T}`),w(`${R}\\times${T}`),w(`${P}\\times${R}`)],a:0,e:r`Hệ cầu: \(${R}=${T}\times${P}\).`},
+{q:r`Trong hệ tọa độ cầu, \(${T}\) bằng:`,o:[w(`${R}\\times${P}`),w(`${T}\\times${R}`),w(`${P}\\times${R}`),w(`${P}\\times${T}`)],a:2,e:r`Hệ cầu: \(${T}=${P}\times${R}\).`},
+{q:r`Trong hệ tọa độ cầu, \(${P}\) bằng:`,o:[w(`${T}\\times${R}`),w(`${R}\\times${T}`),w(`${P}\\times${R}`),w(`${T}\\times${P}`)],a:1,e:r`Hệ cầu: \(${P}=${R}\times${T}\).`},
+{q:r`Yếu tố vi phân đường trong hệ tọa độ cầu là:`,o:[w(`d\\vec{l}=dr\\,${R}+d\\theta\\,${T}+d\\phi\\,${P}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\phi\\,${T}+r\\sin\\theta\\,d\\theta\\,${P}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\theta\\,${T}+r\\sin\\theta\\,d\\phi\\,${P}`),w(`d\\vec{l}=dr\\,${R}+r\\,d\\theta\\,${T}+r\\,d\\phi\\,${P}`)],a:2,e:r`Hệ cầu: \(d\vec{l}=dr\,${R}+r\,d\theta\,${T}+r\sin\theta\,d\phi\,${P}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_r\) trong hệ tọa độ cầu là:`,o:[w(`\\pm r\\sin\\theta\\,dr\\,d\\phi\\,${R}`),w(`\\pm r^2\\sin\\theta\\,d\\theta\\,d\\phi\\,${R}`),w(`\\pm r\\,dr\\,d\\theta\\,${R}`),w(`\\pm r^2\\,d\\theta\\,d\\phi\\,${R}`)],a:1,e:r`Mặt cầu bán kính \(r\): \(d\vec{S}_r=\pm r^2\sin\theta\,d\theta\,d\phi\,${R}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_\theta\) trong hệ tọa độ cầu là:`,o:[w(`\\pm r^2\\sin\\theta\\,d\\theta\\,d\\phi\\,${T}`),w(`\\pm r\\,dr\\,d\\theta\\,${T}`),w(`\\pm r\\sin\\theta\\,dr\\,d\\phi\\,${T}`),w(`\\pm dr\\,d\\phi\\,${T}`)],a:2,e:r`\(d\vec{S}_\theta=\pm r\sin\theta\,dr\,d\phi\,${T}\).`},
+{q:r`Yếu tố vi phân mặt \(d\vec{S}_\phi\) trong hệ tọa độ cầu là:`,o:[w(`\\pm r\\,dr\\,d\\theta\\,${P}`),w(`\\pm r\\sin\\theta\\,dr\\,d\\phi\\,${P}`),w(`\\pm r^2\\sin\\theta\\,d\\theta\\,d\\phi\\,${P}`),w(`\\pm dr\\,d\\theta\\,${P}`)],a:0,e:r`\(d\vec{S}_\phi=\pm r\,dr\,d\theta\,${P}\).`},
+{q:r`Yếu tố vi phân thể tích trong hệ tọa độ cầu là:`,o:[w(`dV=r\\,dr\\,d\\theta\\,d\\phi`),w(`dV=r^2\\,dr\\,d\\theta\\,d\\phi`),w(`dV=r\\sin\\theta\\,dr\\,d\\theta\\,d\\phi`),w(`dV=r^2\\sin\\theta\\,dr\\,d\\theta\\,d\\phi`)],a:3,e:r`Hệ cầu: \(dV=r^2\sin\theta\,dr\,d\theta\,d\phi\).`},
+{q:r`Gradient của hàm vô hướng \(A\) trong hệ tọa độ trụ là:`,o:[w(`\\dfrac{\\partial A}{\\partial r}${R}+\\dfrac{\\partial A}{\\partial\\phi}${P}+\\dfrac{\\partial A}{\\partial z}${Z}`),w(`\\dfrac{\\partial A}{\\partial r}${R}+r\\dfrac{\\partial A}{\\partial\\phi}${P}+\\dfrac{\\partial A}{\\partial z}${Z}`),w(`\\dfrac{\\partial A}{\\partial r}${R}+\\dfrac{1}{r}\\dfrac{\\partial A}{\\partial\\phi}${P}+\\dfrac{\\partial A}{\\partial z}${Z}`),w(`\\dfrac{\\partial A}{\\partial r}${R}+\\dfrac{1}{r}\\dfrac{\\partial A}{\\partial\\theta}${T}+\\dfrac{\\partial A}{\\partial z}${Z}`)],a:2,e:r`Hệ trụ: \(\nabla A=\dfrac{\partial A}{\partial r}${R}+\dfrac{1}{r}\dfrac{\partial A}{\partial\phi}${P}+\dfrac{\partial A}{\partial z}${Z}\).`},
+{q:r`Trong hệ tọa độ cầu, thành phần theo \(${P}\) của \(\mathrm{grad}A\) là:`,o:[w(`\\dfrac{1}{r}\\dfrac{\\partial A}{\\partial\\phi}`),w(`\\dfrac{1}{r\\sin\\theta}\\dfrac{\\partial A}{\\partial\\phi}`),w(`r\\sin\\theta\\dfrac{\\partial A}{\\partial\\phi}`),w(`\\dfrac{\\partial A}{\\partial\\phi}`)],a:1,e:r`Hệ cầu: \(\nabla A=\dfrac{\partial A}{\partial r}${R}+\dfrac{1}{r}\dfrac{\partial A}{\partial\theta}${T}+\dfrac{1}{r\sin\theta}\dfrac{\partial A}{\partial\phi}${P}\).`},
+{q:r`Divergence của \(\vec{A}\) trong hệ tọa độ trụ là:`,o:[w(`\\dfrac{\\partial A_r}{\\partial r}+\\dfrac{\\partial A_\\phi}{\\partial\\phi}+\\dfrac{\\partial A_z}{\\partial z}`),w(`\\dfrac{1}{r}\\dfrac{\\partial (rA_r)}{\\partial r}+\\dfrac{1}{r}\\dfrac{\\partial A_\\phi}{\\partial\\phi}+\\dfrac{\\partial A_z}{\\partial z}`),w(`\\dfrac{1}{r^2}\\dfrac{\\partial (r^2A_r)}{\\partial r}+\\dfrac{1}{r}\\dfrac{\\partial A_\\phi}{\\partial\\phi}+\\dfrac{\\partial A_z}{\\partial z}`),w(`\\dfrac{1}{r}\\dfrac{\\partial A_r}{\\partial r}+\\dfrac{1}{r}\\dfrac{\\partial A_\\phi}{\\partial\\phi}+\\dfrac{\\partial A_z}{\\partial z}`)],a:1,e:r`Hệ trụ: \(\mathrm{div}\vec{A}=\dfrac{1}{r}\dfrac{\partial(rA_r)}{\partial r}+\dfrac{1}{r}\dfrac{\partial A_\phi}{\partial\phi}+\dfrac{\partial A_z}{\partial z}\).`},
+{q:r`Số hạng đầu tiên của \(\mathrm{div}\vec{A}\) trong hệ tọa độ cầu là:`,o:[w(`\\dfrac{\\partial A_r}{\\partial r}`),w(`\\dfrac{1}{r}\\dfrac{\\partial (rA_r)}{\\partial r}`),w(`\\dfrac{1}{r^2}\\dfrac{\\partial (r^2A_r)}{\\partial r}`),w(`\\dfrac{1}{r}\\dfrac{\\partial A_r}{\\partial r}`)],a:2,e:r`Hệ cầu: \(\mathrm{div}\vec{A}=\dfrac{1}{r^2}\dfrac{\partial(r^2A_r)}{\partial r}+\dfrac{1}{r\sin\theta}\dfrac{\partial(\sin\theta A_\theta)}{\partial\theta}+\dfrac{1}{r\sin\theta}\dfrac{\partial A_\phi}{\partial\phi}\).`}
+];
+const qz=document.getElementById("qz");
+let h='';
+D.forEach((it,i)=>{
+  let o='';
+  it.o.forEach((t,j)=>{o+=`<li><label id="l${i}_${j}"><input type="radio" name="q${i}" value="${j}" onchange="pick(${i},${j})"><span>${t}</span></label></li>`;});
+  h+=`<div class="qb"><div class="qt">Câu ${i+1}: ${it.q}</div><ul class="opts">${o}</ul><div id="e${i}" class="exp"><strong>Giải thích:</strong> ${it.e}</div></div>`;
+});
+qz.innerHTML=h;
+if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise();}
+let done=0,right=0;
+function pick(i,j){
+  const it=D[i];
+  document.getElementById(`l${i}_${it.a}`).classList.add('ok');
+  if(j===it.a){right++;}else{document.getElementById(`l${i}_${j}`).classList.add('bad');}
+  document.getElementById(`e${i}`).style.display='block';
+  document.querySelectorAll(`input[name="q${i}"]`).forEach(x=>x.disabled=true);
+  done++;
+  document.getElementById('sub').textContent=`Đã làm ${done}/${D.length} câu • Đúng ${right}`;
+}
+function submitQuiz(){
+  let s=0;
+  D.forEach((it,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    it.o.forEach((_,j)=>document.getElementById(`l${i}_${j}`).classList.remove('ok','bad'));
+    document.getElementById(`l${i}_${it.a}`).classList.add('ok');
+    if(sel){const u=parseInt(sel.value);if(u===it.a){s++;}else{document.getElementById(`l${i}_${u}`).classList.add('bad');}}
+    document.getElementById(`e${i}`).style.display='block';
+    document.querySelectorAll(`input[name="q${i}"]`).forEach(x=>x.disabled=true);
+  });
+  const rs=document.getElementById('res');
+  rs.innerHTML=`Bạn đạt ${s} / ${D.length} điểm!`;
+  rs.style.display='block';
+  rs.scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
 </html>
